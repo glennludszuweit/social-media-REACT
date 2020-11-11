@@ -11,25 +11,6 @@ switch the role daily.
 Document your progress (at least) in Kanban Form (Trello or
 README.md in your project)
 
-## Group 1
-Micha
-Madhu
-
-## Group 2
-Glen
-Juanca
-
-## Group 3
-Danylo
-Daniel
-
-## Group 4
-Nisha
-Sami
-
-## Undecided
-Anton
-
 ## Backend Functions
 
 Endpoint: https://fbw14social.hktr.de/{URI}
@@ -131,6 +112,7 @@ Search a user by Name, Location, Age, etc.
   - Result: { status:'ok'|'fail', history:[Message] }
 
 ### Profile / Group Posts (optional)
+
 
 #### AddPost
   - Method: POST

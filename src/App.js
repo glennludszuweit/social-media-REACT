@@ -1,7 +1,14 @@
-import './App.css';
+import Header from './Containers/Header';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.scss';
 
 function App() {
-  return <h1>Hello from group 2</h1>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 }
 
 export default App;

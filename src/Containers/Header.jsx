@@ -6,7 +6,7 @@ import logo from '../logo.svg';
 function Header() {
   return (
     <div className='header'>
-      <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
+      <Navbar collapseOnSelect expand='lg' bg='danger' variant='dark'>
         <Navbar.Brand>
           <Link to='/'>Glued</Link>
         </Navbar.Brand>
@@ -25,14 +25,14 @@ function Header() {
               <div>
                 <DropdownButton
                   className='ml-2 user-menu-dropdown'
-                  variant='dark'
+                  variant='danger'
                   menuAlign='right'
                 >
-                  <Dropdown.Item href='#action/3.1'>New Post</Dropdown.Item>
-                  <Dropdown.Item href='#action/3.2'>Friends</Dropdown.Item>
-                  <Dropdown.Item href='#action/3.3'>Profile</Dropdown.Item>
+                  <Dropdown.Item href='/me/posts'>Posts</Dropdown.Item>
+                  <Dropdown.Item href='/me/friends'>Friends</Dropdown.Item>
+                  <Dropdown.Item href='/me'>Profile</Dropdown.Item>
                   <Dropdown.Divider />
-                  <Dropdown.Item href='#action/3.4'>Settings</Dropdown.Item>
+                  <Dropdown.Item href='/me/settings'>Settings</Dropdown.Item>
                 </DropdownButton>
               </div>
             </div>

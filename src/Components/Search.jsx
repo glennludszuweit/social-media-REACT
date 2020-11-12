@@ -10,7 +10,7 @@ function Search() {
         aria-describedby='basic-addon2'
       />
       <InputGroup.Append>
-        <Button className='btn btn-secondary' id='basic-addon2'>
+        <Button className='btn btn-light' id='basic-addon2'>
           <FaSearch />
         </Button>
       </InputGroup.Append>

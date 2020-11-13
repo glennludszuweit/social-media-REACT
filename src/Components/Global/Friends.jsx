@@ -1,4 +1,5 @@
 import { Card, ListGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function Friends() {
   return (
@@ -10,7 +11,9 @@ function Friends() {
         Friends
       </Card.Header>
       <ListGroup variant='flush'>
-        <ListGroup.Item>Cras justo odio</ListGroup.Item>
+        <ListGroup.Item>
+          <Link to='/users/1'>Cras justo odio</Link>
+        </ListGroup.Item>
       </ListGroup>
     </Card>
   );

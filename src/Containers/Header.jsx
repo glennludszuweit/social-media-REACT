@@ -1,4 +1,4 @@
-import { Dropdown, DropdownButton, Nav, Navbar } from 'react-bootstrap';
+import { Button, Dropdown, DropdownButton, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import logo from '../logo.svg';
 
@@ -7,20 +7,23 @@ function Header() {
     <div className='header'>
       <Navbar collapseOnSelect expand='lg' bg='danger' variant='dark'>
         <Navbar.Brand>
-          <Link to='/home'>Glued</Link>
+          <Link to='/'>Glued</Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='mr-auto ml-auto m-2'></Nav>
           <Nav>
             <Nav.Link>
-              <Link to='/home'>Home</Link>
+              <Link to='/'>Home</Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to='/posts'>Posts</Link>
             </Nav.Link>
             <Nav.Link>
               <Link to='/users'>Users</Link>
             </Nav.Link>
             <Nav.Link>
-              <Link to='/chat'>Chat</Link>
+              <Link to='/auth'>Login</Link>
             </Nav.Link>
             <div className='user-dropdown-box ml-3'>
               <div className='user-menu'>
@@ -34,11 +37,9 @@ function Header() {
                   variant='danger'
                   menuAlign='right'
                 >
-                  <Dropdown.Item href='/me/posts'>Posts</Dropdown.Item>
-                  <Dropdown.Item href='/me/friends'>Friends</Dropdown.Item>
-                  <Dropdown.Item href='/me'>Profile</Dropdown.Item>
+                  <Dropdown.Item href='/me'>My Account</Dropdown.Item>
                   <Dropdown.Divider />
-                  <Dropdown.Item href='/me/settings'>Settings</Dropdown.Item>
+                  <Dropdown.Item href='/me/settings'>Logout</Dropdown.Item>
                 </DropdownButton>
               </div>
             </div>

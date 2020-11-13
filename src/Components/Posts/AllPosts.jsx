@@ -1,4 +1,5 @@
 import { Card, ListGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import image from '../../logo.svg';
 
 function AllPosts() {
@@ -18,7 +19,9 @@ function AllPosts() {
               <img src={image} alt='' width='200' />
             </div>
             <div>
-              <Card.Title>Special title treatment</Card.Title>
+              <Card.Title>
+                <Link to='/posts/1'>Special title treatment</Link>
+              </Card.Title>
               <Card.Text>
                 With supporting text below as a natural lead-in to additional
                 content.

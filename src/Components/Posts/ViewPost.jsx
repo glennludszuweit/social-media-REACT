@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PostView() {
+function ViewPost() {
   return (
     <div>
       <h1>Post</h1>
@@ -8,4 +8,4 @@ function PostView() {
   );
 }
 
-export default PostView;
+export default ViewPost;

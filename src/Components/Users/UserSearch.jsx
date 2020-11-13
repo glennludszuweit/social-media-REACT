@@ -3,14 +3,10 @@ import { FaSearch } from 'react-icons/fa';
 
 function Search() {
   return (
-    <InputGroup>
-      <FormControl
-        type='text'
-        placeholder='Search'
-        aria-describedby='basic-addon2'
-      />
+    <InputGroup className='my-3'>
+      <FormControl type='text' placeholder='Search' />
       <InputGroup.Append>
-        <Button className='btn btn-light' id='basic-addon2'>
+        <Button className='btn btn-danger'>
           <FaSearch />
         </Button>
       </InputGroup.Append>

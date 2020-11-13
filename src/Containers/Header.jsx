@@ -1,6 +1,5 @@
 import { Dropdown, DropdownButton, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Search from '../Components/Search';
 import logo from '../logo.svg';
 
 function Header() {
@@ -8,15 +7,22 @@ function Header() {
     <div className='header'>
       <Navbar collapseOnSelect expand='lg' bg='danger' variant='dark'>
         <Navbar.Brand>
-          <Link to='/'>Glued</Link>
+          <Link to='/home'>Glued</Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
-          <Nav className='mr-auto ml-auto m-2'>
-            <Search />
-          </Nav>
+          <Nav className='mr-auto ml-auto m-2'></Nav>
           <Nav>
-            <div className='user-dropdown-box'>
+            <Nav.Link>
+              <Link to='/home'>Home</Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to='/users'>Users</Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to='/chat'>Chat</Link>
+            </Nav.Link>
+            <div className='user-dropdown-box ml-3'>
               <div className='user-menu'>
                 <div className='nav-image'>
                   <img src={logo} alt='' />

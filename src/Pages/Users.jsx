@@ -1,11 +1,11 @@
 import { Container } from 'react-bootstrap';
-import UserSearch from '../Components/Users/UserSearch';
+import Search from '../Components/Global/Search';
 import UsersList from '../Components/Users/UsersList';
 
 function Users() {
   return (
     <Container className='w-75'>
-      <UserSearch />
+      <Search />
       <UsersList />
     </Container>
   );

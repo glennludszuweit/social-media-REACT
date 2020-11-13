@@ -1,6 +1,6 @@
 import { Col, Row } from 'react-bootstrap';
-import AllPosts from '../Components/Home/AllPosts';
-import Friends from '../Components/Home/Friends';
+import AllPosts from '../Components/Posts/AllPosts';
+import Friends from '../Components/Global/Friends';
 
 function Home() {
   return (

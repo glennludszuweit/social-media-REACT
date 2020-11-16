@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
 
 function Register() {
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
   return (
     <Card>
       <Card.Header style={{ backgroundColor: '#DC3545', color: '#fff' }}>

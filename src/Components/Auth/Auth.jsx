@@ -1,18 +1,13 @@
-import { Row, Col } from 'react-bootstrap';
+import { Route, Switch } from 'react-router-dom';
 import Login from './Login/Login';
 import Register from './Register/Register';
 
 function Auth() {
   return (
-    <Row className='my-3'>
-      <Col sm={12} md={6} className='my-2'>
-        <Login />
-      </Col>
-
-      <Col sm={12} md={6} className='my-2'>
-        <Register />
-      </Col>
-    </Row>
+    <Switch>
+      <Route path='/auth/login' component={Login} />
+      <Route path='/auth/register' component={Register} />
+    </Switch>
   );
 }
 

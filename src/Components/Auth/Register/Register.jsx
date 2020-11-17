@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
-import { Button, Card, Form } from 'react-bootstrap';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../../Redux/Actions/auth';
+import { Link } from 'react-router-dom';
+import { useStyles } from './styles';
+import Avatar from '@material-ui/core/Avatar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
 function Register() {
+  const classes = useStyles();
+  const dispatch = useDispatch();
   const [userData, setUserData] = useState({
     name: '',
     email: '',
     password: '',
   });
-  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,58 +26,64 @@ function Register() {
   };
 
   return (
-    <Card>
-      <Card.Header style={{ backgroundColor: '#DC3545', color: '#fff' }}>
-        Register
-      </Card.Header>
-      <Card.Body>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group>
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Name'
-              value={userData.name}
-              onChange={(e) =>
-                setUserData({ ...userData, name: e.target.value })
-              }
-            />
-          </Form.Group>
-
-          <Form.Group>
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type='email'
-              placeholder='Enter email'
-              value={userData.email}
-              onChange={(e) =>
-                setUserData({ ...userData, email: e.target.value })
-              }
-            />
-          </Form.Group>
-
-          <Form.Group>
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type='password'
-              placeholder='Password'
-              value={userData.password}
-              onChange={(e) =>
-                setUserData({ ...userData, password: e.target.value })
-              }
-            />
-          </Form.Group>
-
-          <Button
-            className='float-right'
-            variant='outline-danger'
-            type='submit'
-          >
-            Submit
-          </Button>
-        </Form>
-      </Card.Body>
-    </Card>
+    <Container component='main' maxWidth='xs'>
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component='h1' variant='h5'>
+          Register
+        </Typography>
+        <form className={classes.form} noValidate>
+          <TextField
+            variant='outlined'
+            margin='normal'
+            label='Name'
+            type='text'
+            required
+            fullWidth
+            autoFocus
+            onChange={(e) => setUserData({ ...userData, name: e.target.value })}
+          />
+          <TextField
+            variant='outlined'
+            margin='normal'
+            label='Email Address'
+            type='email'
+            required
+            fullWidth
+            onChange={(e) =>
+              setUserData({ ...userData, email: e.target.value })
+            }
+          />
+          <TextField
+            variant='outlined'
+            margin='normal'
+            required
+            fullWidth
+            label='Password'
+            type='password'
+            onChange={(e) =>
+              setUserData({ ...userData, password: e.target.value })
+            }
+          />
+          <div className={classes.submit}>
+            <button type='submit' onClick={handleSubmit}>
+              Register
+            </button>
+          </div>
+          <Grid container>
+            <Grid item xs></Grid>
+            <Grid item>
+              <Link to='/auth/login' variant='body2'>
+                {'Already have an account? Login'}
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+    </Container>
   );
 }
 

@@ -1,9 +1,9 @@
-import Home from '../../Pages/Home';
+import Home from '../../Components/Home/Home';
 import Auth from '../../Components/Auth/Auth';
-import User from '../../Pages/User';
-import Users from '../../Pages/Users';
-import Post from '../../Pages/Post';
-import Posts from '../../Pages/Posts';
+import User from '../../Components/Users/UserView/UserView';
+import Users from '../../Components/Users/Users';
+import PostView from '../../Components/Posts/PostView/PostView';
+import Posts from '../../Components/Posts/Posts';
 import { Route, Switch } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 
@@ -11,7 +11,7 @@ function Main() {
   return (
     <Container>
       <Switch>
-        <Route path='/posts/:id' component={Post} />
+        <Route path='/posts/:id' component={PostView} />
         <Route path='/posts' component={Posts} />
         <Route path='/users/:id' component={User} />
         <Route path='/users' component={Users} />

@@ -1,12 +1,12 @@
 import { Col, Row } from 'react-bootstrap';
-import AllPosts from '../Components/Posts/AllPosts';
-import Friends from '../Components/Global/Friends/Friends';
+import Posts from '../Posts/Posts';
+import Friends from '../Global/Friends/Friends';
 
 function Home() {
   return (
     <Row>
       <Col sm={8} className='my-3'>
-        <AllPosts />
+        <Posts />
       </Col>
       <Col sm={4} className='my-3'>
         <Friends />

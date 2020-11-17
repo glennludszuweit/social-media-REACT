@@ -6,12 +6,10 @@ import Store from './Store';
 import App from './App';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter basename='/glued'>
-      <Provider store={Store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter basename='/glued'>
+    <Provider store={Store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 );

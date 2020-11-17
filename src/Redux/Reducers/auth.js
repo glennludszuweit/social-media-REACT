@@ -1,13 +1,33 @@
-const auth = (auth = [], action) => {
+const defaultState = [
+  {
+    userData: {},
+    message: '',
+    status: null,
+  },
+];
+
+const auth = (state = defaultState, action) => {
   switch (action.type) {
     case 'LOGIN':
-      return [...auth, action.value];
+      return [
+        {
+          userData: action.value,
+          message: action.message,
+          status: action.status,
+        },
+      ];
 
     case 'REGISTER':
-      return [...auth, action.value];
+      return [
+        {
+          userData: action.value,
+          message: action.message,
+          status: action.status,
+        },
+      ];
 
     default:
-      return auth;
+      return state;
   }
 };
 

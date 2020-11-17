@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { login } from '../../../Redux/Actions/auth';
 import { useStyles } from './styles';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,6 +13,16 @@ import Container from '@material-ui/core/Container';
 
 function Login() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const [userData, setUserData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(userData));
+  };
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -30,6 +43,9 @@ function Login() {
             required
             fullWidth
             autoFocus
+            onChange={(e) =>
+              setUserData({ ...userData, email: e.target.value })
+            }
           />
           <TextField
             variant='outlined'
@@ -38,9 +54,14 @@ function Login() {
             type='password'
             required
             fullWidth
+            onChange={(e) =>
+              setUserData({ ...userData, password: e.target.value })
+            }
           />
           <div className={classes.submit}>
-            <button type='submit'>Sign In</button>
+            <button type='submit' onClick={handleSubmit}>
+              Login
+            </button>
           </div>
           <Grid container>
             <Grid item xs></Grid>

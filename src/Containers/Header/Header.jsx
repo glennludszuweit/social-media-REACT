@@ -7,12 +7,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import PeopleIcon from '@material-ui/icons/People';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
-import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import BrokenImageIcon from '@material-ui/icons/BrokenImage';
-import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
@@ -133,20 +131,6 @@ function Header() {
             </Link>
           </Typography>
 
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder='Search…'
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-
           <div className={classes.sectionDesktop}>
             <IconButton color='inherit'>
               <Link to='/posts'>
@@ -154,7 +138,7 @@ function Header() {
               </Link>
             </IconButton>
             <IconButton color='inherit'>
-              <Link to='/posts'>
+              <Link to='/users'>
                 <PeopleIcon />
               </Link>
             </IconButton>

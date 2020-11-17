@@ -5,11 +5,16 @@ import Users from '../../Components/Users/Users';
 import PostView from '../../Components/Posts/PostView/PostView';
 import Posts from '../../Components/Posts/Posts';
 import { Route, Switch } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
+import { Container } from '@material-ui/core';
+import { useStyles } from './styles';
+import Status from '../../Components/Global/Status/Status';
 
 function Main() {
+  const classes = useStyles();
+
   return (
-    <Container>
+    <Container className={classes.root}>
+      <Status />
       <Switch>
         <Route path='/posts/:id' component={PostView} />
         <Route path='/posts' component={Posts} />

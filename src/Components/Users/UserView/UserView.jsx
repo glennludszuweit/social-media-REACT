@@ -1,8 +1,8 @@
 import { Col, Image, Row } from 'react-bootstrap';
-import UserPosts from '../Components/Users/UserPosts';
-import image from '../logo.svg';
+import UserPosts from '../UserPosts/UserPosts';
+import image from '../../../logo.svg';
 
-function User() {
+function UserView() {
   return (
     <Row>
       <Col sm={3} className='my-3'>
@@ -18,4 +18,4 @@ function User() {
   );
 }
 
-export default User;
+export default UserView;

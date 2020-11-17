@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
-import image from '../logo.svg';
+import image from '../../../logo.svg';
 
 function Post() {
   return (

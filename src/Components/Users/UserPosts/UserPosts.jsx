@@ -1,8 +1,8 @@
 import { Card, ListGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import image from '../../logo.svg';
+import image from '../../../logo.svg';
 
-function AllPosts() {
+function UserPosts() {
   return (
     <Card>
       <Card.Header
@@ -34,4 +34,4 @@ function AllPosts() {
   );
 }
 
-export default AllPosts;
+export default UserPosts;

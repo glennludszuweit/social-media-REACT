@@ -1,11 +1,11 @@
 import React from 'react';
 
-function AddPost() {
+function PostAdd() {
   return (
     <div>
-      <h1>AddPost</h1>
+      <h1>PostAdd</h1>
     </div>
   );
 }
 
-export default AddPost;
+export default PostAdd;

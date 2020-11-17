@@ -96,7 +96,7 @@ function Header() {
           <VpnKeyIcon />
         </IconButton>
         <p>
-          <Link to='/auth'>Login</Link>
+          <Link to='/auth/login'>Login</Link>
         </p>
       </MenuItem>
       <MenuItem className={classes.iconMenu}>
@@ -159,7 +159,7 @@ function Header() {
               </Link>
             </IconButton>
             <IconButton color='inherit'>
-              <Link to='/auth'>
+              <Link to='/auth/login'>
                 <VpnKeyIcon />
               </Link>
             </IconButton>

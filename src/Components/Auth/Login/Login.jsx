@@ -1,36 +1,58 @@
-import { Button, Card, Form } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { useStyles } from './styles';
+import Avatar from '@material-ui/core/Avatar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
 function Login() {
+  const classes = useStyles();
+
   return (
-    <Card>
-      <Card.Header style={{ backgroundColor: '#DC3545', color: '#fff' }}>
-        Login
-      </Card.Header>
-      <Card.Body>
-        <Form>
-          <Form.Group controlId='formBasicEmail'>
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type='email' placeholder='Enter email' />
-            <Form.Text className='text-muted'>
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-
-          <Form.Group controlId='formBasicPassword'>
-            <Form.Label>Password</Form.Label>
-            <Form.Control type='password' placeholder='Password' />
-          </Form.Group>
-
-          <Button
-            className='float-right'
-            variant='outline-danger'
-            type='submit'
-          >
-            Submit
-          </Button>
-        </Form>
-      </Card.Body>
-    </Card>
+    <Container component='main' maxWidth='xs'>
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component='h1' variant='h5'>
+          Login
+        </Typography>
+        <form className={classes.form} noValidate>
+          <TextField
+            variant='outlined'
+            margin='normal'
+            label='Email Address'
+            type='text'
+            required
+            fullWidth
+            autoFocus
+          />
+          <TextField
+            variant='outlined'
+            margin='normal'
+            label='Password'
+            type='password'
+            required
+            fullWidth
+          />
+          <div className={classes.submit}>
+            <button type='submit'>Sign In</button>
+          </div>
+          <Grid container>
+            <Grid item xs></Grid>
+            <Grid item>
+              <Link to='/auth/register' variant='body2'>
+                {"Don't have an account? Register"}
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+    </Container>
   );
 }
 

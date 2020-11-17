@@ -1,6 +1,6 @@
 import { Row, Col } from 'react-bootstrap';
-import Login from '../Components/Auth/Login';
-import Register from '../Components/Auth/Register';
+import Login from './Login/Login';
+import Register from './Register/Register';
 
 function Auth() {
   return (

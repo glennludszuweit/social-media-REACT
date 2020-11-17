@@ -15,9 +15,11 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { useSelector } from 'react-redux';
 
 function Header() {
   const classes = useStyles();
+  const auth = useSelector((state) => state.auth);
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
@@ -63,65 +65,77 @@ function Header() {
   );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem className={classes.iconMenu}>
-        <IconButton color='inherit'>
-          <MenuBookIcon />
-        </IconButton>
-        <p>
-          <Link to='/posts'>posts</Link>
-        </p>
-      </MenuItem>
-      <MenuItem className={classes.iconMenu}>
-        <IconButton color='inherit'>
-          <PeopleIcon />
-        </IconButton>
-        <p>
-          <Link to='/users'>Users</Link>
-        </p>
-      </MenuItem>
-      <MenuItem className={classes.iconMenu}>
-        <IconButton color='inherit'>
-          <VpnKeyIcon />
-        </IconButton>
-        <p>
-          <Link to='/auth/login'>Login</Link>
-        </p>
-      </MenuItem>
-      <MenuItem className={classes.iconMenu}>
-        <IconButton aria-label='show 4 new mails' color='inherit'>
-          <Badge badgeContent={4} color='secondary'>
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>
-          <Link to='/Messages'>Messages</Link>
-        </p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen} className={classes.iconMenu}>
-        <IconButton
-          aria-label='account of current user'
-          aria-controls='primary-search-account-menu'
-          aria-haspopup='true'
-          color='inherit'
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
+  const renderMobileMenu =
+    auth[0].status === true ? (
+      <Menu
+        anchorEl={mobileMoreAnchorEl}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        id={mobileMenuId}
+        keepMounted
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={isMobileMenuOpen}
+        onClose={handleMobileMenuClose}
+      >
+        <MenuItem className={classes.iconMenu}>
+          <IconButton color='inherit'>
+            <MenuBookIcon />
+          </IconButton>
+          <p>
+            <Link to='/posts'>posts</Link>
+          </p>
+        </MenuItem>
+        <MenuItem className={classes.iconMenu}>
+          <IconButton color='inherit'>
+            <PeopleIcon />
+          </IconButton>
+          <p>
+            <Link to='/users'>Users</Link>
+          </p>
+        </MenuItem>
+        <MenuItem className={classes.iconMenu}>
+          <IconButton aria-label='show 4 new mails' color='inherit'>
+            <Badge badgeContent={4} color='secondary'>
+              <MailIcon />
+            </Badge>
+          </IconButton>
+          <p>
+            <Link to='/Messages'>Messages</Link>
+          </p>
+        </MenuItem>
+        <MenuItem onClick={handleProfileMenuOpen} className={classes.iconMenu}>
+          <IconButton
+            aria-label='account of current user'
+            aria-controls='primary-search-account-menu'
+            aria-haspopup='true'
+            color='inherit'
+          >
+            <AccountCircle />
+          </IconButton>
+          <p>Profile</p>
+        </MenuItem>
+      </Menu>
+    ) : (
+      <Menu
+        anchorEl={mobileMoreAnchorEl}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        id={mobileMenuId}
+        keepMounted
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={isMobileMenuOpen}
+        onClose={handleMobileMenuClose}
+      >
+        <MenuItem className={classes.iconMenu}>
+          <IconButton color='inherit'>
+            <VpnKeyIcon />
+          </IconButton>
+          <p>
+            <Link to='/auth/login'>Login</Link>
+          </p>
+        </MenuItem>
+      </Menu>
+    );
 
-  return (
+  return auth[0].status === true ? (
     <div className={classes.grow}>
       <AppBar position='static'>
         <Toolbar className={classes.root}>
@@ -140,11 +154,6 @@ function Header() {
             <IconButton color='inherit'>
               <Link to='/users'>
                 <PeopleIcon />
-              </Link>
-            </IconButton>
-            <IconButton color='inherit'>
-              <Link to='/auth/login'>
-                <VpnKeyIcon />
               </Link>
             </IconButton>
             <IconButton aria-label='show 4 new mails' color='inherit'>
@@ -176,6 +185,25 @@ function Header() {
               <MoreIcon />
             </IconButton>
           </div>
+        </Toolbar>
+      </AppBar>
+      {renderMobileMenu}
+      {renderMenu}
+    </div>
+  ) : (
+    <div className={classes.grow}>
+      <AppBar position='static'>
+        <Toolbar className={classes.root}>
+          <Typography>
+            <Link to='/'>
+              <BrokenImageIcon />
+            </Link>
+          </Typography>
+          <IconButton color='inherit'>
+            <Link to='/auth/login'>
+              <VpnKeyIcon />
+            </Link>
+          </IconButton>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}

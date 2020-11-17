@@ -8,11 +8,13 @@ import { Route, Switch } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 import { useStyles } from './styles';
 import Status from '../../Components/Global/Status/Status';
+import { useSelector } from 'react-redux';
 
 function Main() {
   const classes = useStyles();
+  const auth = useSelector((state) => state.auth);
 
-  return (
+  return auth[0].status === true ? (
     <Container className={classes.root}>
       <Status />
       <Switch>
@@ -20,8 +22,13 @@ function Main() {
         <Route path='/posts' component={Posts} />
         <Route path='/users/:id' component={User} />
         <Route path='/users' component={Users} />
-        <Route path='/auth' component={Auth} />
         <Route exact path='/' component={Home} />
+      </Switch>
+    </Container>
+  ) : (
+    <Container className={classes.root}>
+      <Switch>
+        <Route path='/auth/login' component={Auth} />
       </Switch>
     </Container>
   );

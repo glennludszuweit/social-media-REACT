@@ -1,12 +1,10 @@
 import { Container, ListGroup, Card } from 'react-bootstrap';
-import Search from '../Global/Search/Search';
 import image from '../../logo.svg';
 import { Link } from 'react-router-dom';
 
 function Users() {
   return (
     <Container className='w-75'>
-      <Search />
       <Card>
         <Card.Header
           as='h6'

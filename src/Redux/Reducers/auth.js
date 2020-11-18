@@ -12,7 +12,6 @@ const auth = (state = defaultState, action) => {
       return [
         {
           userData: action.value,
-          message: action.message,
           status: action.status,
         },
       ];
@@ -21,7 +20,6 @@ const auth = (state = defaultState, action) => {
       return [
         {
           userData: action.value,
-          message: action.message,
           status: action.status,
         },
       ];

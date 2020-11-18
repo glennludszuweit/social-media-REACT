@@ -16,6 +16,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { useSelector } from 'react-redux';
+import Search from '../../Components/Global/Search/Search';
 
 function Header() {
   const classes = useStyles();
@@ -76,6 +77,9 @@ function Header() {
         open={isMobileMenuOpen}
         onClose={handleMobileMenuClose}
       >
+        <MenuItem className={classes.iconMenu}>
+          <Search />
+        </MenuItem>
         <MenuItem className={classes.iconMenu}>
           <IconButton color='inherit'>
             <MenuBookIcon />
@@ -146,6 +150,7 @@ function Header() {
           </Typography>
 
           <div className={classes.sectionDesktop}>
+            <Search />
             <IconButton color='inherit'>
               <Link to='/posts'>
                 <MenuBookIcon />

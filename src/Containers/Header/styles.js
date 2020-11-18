@@ -11,7 +11,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   root: {
-    backgroundColor: '#800300',
+    backgroundColor: '#400100',
     color: '#E6E6E6',
     justifyContent: 'space-between',
     '& a': {

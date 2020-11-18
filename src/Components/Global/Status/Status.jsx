@@ -4,9 +4,9 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useStyles } from './styles';
 
-function Alert(props) {
+const Alert = (props) => {
   return <MuiAlert elevation={5} variant='filled' {...props} />;
-}
+};
 
 function Status() {
   const classes = useStyles();

@@ -1,13 +1,11 @@
 import React from 'react';
 import { Container, ListGroup, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Search from '../Global/Search/Search';
 import image from '../../logo.svg';
 
 function Posts() {
   return (
     <Container className='w-100'>
-      <Search />
       <Card>
         <Card.Header
           as='h6'

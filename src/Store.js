@@ -5,5 +5,7 @@ import Thunk from 'redux-thunk';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const Store = createStore(Reducers, composeEnhancers(applyMiddleware(Thunk)));
-
+Store.subscribe(() =>
+  localStorage.setItem('social-auth', JSON.stringify(Store.getState().auth))
+);
 export default Store;

@@ -3,16 +3,19 @@ import * as api from '../../API';
 export const login = (userData) => async (dispatch) => {
   try {
     const res = await api.login(userData);
-    if (res.statusText === 'OK') {
-      dispatch({
-        type: 'LOGIN',
-        status: true,
-      });
-    }
+    dispatch({
+      type: 'LOGIN',
+      status: true,
+      message: 'Success',
+      tokens: res.data.tokens.access.token,
+      refreshTokens: res.data.tokens.refresh.token,
+    });
   } catch (error) {
     dispatch({
       type: 'LOGIN',
       status: false,
+      tokens: false,
+      refreshTokens: false,
     });
     console.log(error);
   }
@@ -21,17 +24,24 @@ export const login = (userData) => async (dispatch) => {
 export const register = (userData) => async (dispatch) => {
   try {
     const res = await api.register(userData);
-    if (res.statusText === 'Created') {
-      dispatch({
-        type: 'REGISTER',
-        status: true,
-      });
-    }
+    dispatch({
+      type: 'REGISTER',
+      status: true,
+      tokens: res.data.tokens.access.token,
+      refreshTokens: res.data.tokens.refresh.token,
+    });
   } catch (error) {
     dispatch({
       type: 'REGISTER',
       status: false,
+      tokens: false,
+      refreshTokens: false,
     });
     console.log(error.message);
   }
+};
+
+export const logout = (userData) => async (dispatch) => {
+  await api.logout(userData);
+  dispatch({ type: 'LOGOUT' });
 };

@@ -11,13 +11,11 @@ const Alert = (props) => {
 function Status() {
   const classes = useStyles();
   const auth = useSelector((state) => state.auth);
-  const [status, setStatus] = useState(null);
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
-    setStatus(auth[0].status);
     setOpen(true);
-  }, [auth, status]);
+  }, [auth]);
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -28,16 +26,26 @@ function Status() {
 
   return (
     <div className={classes.root}>
-      {status === true ? (
+      {auth.status === true ? (
         <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
           <Alert onClose={handleClose} severity='success'>
-            Success!
+            {auth.request === 'login' ? (
+              <div>Logged in successfuly!</div>
+            ) : auth.request === 'register' ? (
+              <div>Registration successful!</div>
+            ) : auth.request === 'logout' ? (
+              <div>Logged out!</div>
+            ) : null}
           </Alert>
         </Snackbar>
-      ) : status === false ? (
+      ) : auth.status === false ? (
         <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
           <Alert onClose={handleClose} severity='error'>
-            Failed!
+            {auth.request === 'login' ? (
+              <div>Failed! please check credentials.</div>
+            ) : auth.request === 'register' ? (
+              <div>Failed! Check email or password</div>
+            ) : null}
           </Alert>
         </Snackbar>
       ) : (

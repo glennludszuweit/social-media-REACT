@@ -1,6 +1,9 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../Redux/Actions/auth';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useStyles } from './styles';
+import Search from '../../Components/Global/Search/Search';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -15,11 +18,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { useSelector } from 'react-redux';
-import Search from '../../Components/Global/Search/Search';
 
 function Header() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -59,87 +61,91 @@ function Header() {
       <MenuItem onClick={handleMenuClose}>
         <Link to='/me'>My account</Link>
       </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link to='/auth'>Logout</Link>
+      <MenuItem
+        onClick={() => {
+          dispatch(logout(auth.refreshTokens));
+          handleMenuClose();
+        }}
+      >
+        Logout
       </MenuItem>
     </Menu>
   );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu =
-    auth[0].status === true ? (
-      <Menu
-        anchorEl={mobileMoreAnchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        id={mobileMenuId}
-        keepMounted
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={isMobileMenuOpen}
-        onClose={handleMobileMenuClose}
-      >
-        <MenuItem className={classes.iconMenu}>
-          <Search />
-        </MenuItem>
-        <MenuItem className={classes.iconMenu}>
-          <IconButton color='inherit'>
-            <MenuBookIcon />
-          </IconButton>
-          <p>
-            <Link to='/posts'>posts</Link>
-          </p>
-        </MenuItem>
-        <MenuItem className={classes.iconMenu}>
-          <IconButton color='inherit'>
-            <PeopleIcon />
-          </IconButton>
-          <p>
-            <Link to='/users'>Users</Link>
-          </p>
-        </MenuItem>
-        <MenuItem className={classes.iconMenu}>
-          <IconButton aria-label='show 4 new mails' color='inherit'>
-            <Badge badgeContent={4} color='secondary'>
-              <MailIcon />
-            </Badge>
-          </IconButton>
-          <p>
-            <Link to='/Messages'>Messages</Link>
-          </p>
-        </MenuItem>
-        <MenuItem onClick={handleProfileMenuOpen} className={classes.iconMenu}>
-          <IconButton
-            aria-label='account of current user'
-            aria-controls='primary-search-account-menu'
-            aria-haspopup='true'
-            color='inherit'
-          >
-            <AccountCircle />
-          </IconButton>
-          <p>Profile</p>
-        </MenuItem>
-      </Menu>
-    ) : (
-      <Menu
-        anchorEl={mobileMoreAnchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        id={mobileMenuId}
-        keepMounted
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={isMobileMenuOpen}
-        onClose={handleMobileMenuClose}
-      >
-        <MenuItem className={classes.iconMenu}>
-          <IconButton color='inherit'>
-            <VpnKeyIcon />
-          </IconButton>
-          <p>
-            <Link to='/auth/login'>Login</Link>
-          </p>
-        </MenuItem>
-      </Menu>
-    );
+  const renderMobileMenu = auth.tokens ? (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem className={classes.iconMenu}>
+        <Search />
+      </MenuItem>
+      <MenuItem className={classes.iconMenu}>
+        <IconButton color='inherit'>
+          <MenuBookIcon />
+        </IconButton>
+        <p>
+          <Link to='/posts'>posts</Link>
+        </p>
+      </MenuItem>
+      <MenuItem className={classes.iconMenu}>
+        <IconButton color='inherit'>
+          <PeopleIcon />
+        </IconButton>
+        <p>
+          <Link to='/users'>Users</Link>
+        </p>
+      </MenuItem>
+      <MenuItem className={classes.iconMenu}>
+        <IconButton aria-label='show 4 new mails' color='inherit'>
+          <Badge badgeContent={4} color='secondary'>
+            <MailIcon />
+          </Badge>
+        </IconButton>
+        <p>
+          <Link to='/Messages'>Messages</Link>
+        </p>
+      </MenuItem>
+      <MenuItem onClick={handleProfileMenuOpen} className={classes.iconMenu}>
+        <IconButton
+          aria-label='account of current user'
+          aria-controls='primary-search-account-menu'
+          aria-haspopup='true'
+          color='inherit'
+        >
+          <AccountCircle />
+        </IconButton>
+        <p>Profile</p>
+      </MenuItem>
+    </Menu>
+  ) : (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem className={classes.iconMenu}>
+        <IconButton color='inherit'>
+          <VpnKeyIcon />
+        </IconButton>
+        <p>
+          <Link to='/auth/login'>Login</Link>
+        </p>
+      </MenuItem>
+    </Menu>
+  );
 
-  return auth[0].status === true ? (
+  return auth.tokens ? (
     <div className={classes.grow}>
       <AppBar position='static'>
         <Toolbar className={classes.root}>

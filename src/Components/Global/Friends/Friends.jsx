@@ -27,7 +27,7 @@ function Friends() {
               <AccountCircle />
             </TableCell>
             <TableCell component='th' scope='row'>
-              <Link to='/user'>Your Friend Name</Link>
+              <Link to='/user/1'>Your Friend Name</Link>
             </TableCell>
           </TableRow>
         </TableBody>

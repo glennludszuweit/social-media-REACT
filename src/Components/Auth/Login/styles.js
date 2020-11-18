@@ -30,5 +30,9 @@ export const useStyles = makeStyles((theme) => ({
       backgroundColor: '#BF0600',
       color: '#E6E6E6',
     },
+    '& a': {
+      color: '#E6E6E6',
+      textDecoration: 'none',
+    },
   },
 }));

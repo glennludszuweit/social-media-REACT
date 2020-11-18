@@ -4,13 +4,19 @@ import User from '../../Components/Users/UserView/UserView';
 import Users from '../../Components/Users/Users';
 import PostView from '../../Components/Posts/PostView/PostView';
 import Posts from '../../Components/Posts/Posts';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 import { useStyles } from './styles';
 import Status from '../../Components/Global/Status/Status';
+import { useSelector } from 'react-redux';
 
 function Main() {
   const classes = useStyles();
+  const auth = useSelector((state) => state.auth);
+
+  if (!auth.tokens) {
+    return <Auth />;
+  }
 
   return (
     <Container className={classes.root}>
@@ -20,8 +26,8 @@ function Main() {
         <Route path='/posts' component={Posts} />
         <Route path='/users/:id' component={User} />
         <Route path='/users' component={Users} />
-        <Route path='/auth' component={Auth} />
         <Route exact path='/' component={Home} />
+        <Redirect to='/' />
       </Switch>
     </Container>
   );

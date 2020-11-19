@@ -10,6 +10,11 @@ export const useStyles = makeStyles((theme) => ({
       color: '#400100',
     },
   },
+  searchContainer: {
+    margin: '0 10px',
+    display: 'flex',
+    alignItems: 'center',
+  },
   root: {
     backgroundColor: '#400100',
     color: '#E6E6E6',

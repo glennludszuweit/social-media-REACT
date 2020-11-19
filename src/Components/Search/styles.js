@@ -6,8 +6,9 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     width: '100%',
-    margin: '5px 10px',
+    margin: '15px 0',
     border: 'none',
+    height: 35,
   },
   input: {
     marginLeft: theme.spacing(1),

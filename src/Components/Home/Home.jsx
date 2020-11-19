@@ -1,17 +1,19 @@
-import { Col, Row } from 'react-bootstrap';
 import Posts from '../Posts/Posts';
-import Friends from '../Global/Friends/Friends';
+import Friends from '../Friends/Friends';
+import { Grid, Hidden } from '@material-ui/core';
 
 function Home() {
   return (
-    <Row>
-      <Col sm={8} className='my-3'>
+    <Grid container>
+      <Grid item lg={8} md={8} sm={12} xs={12}>
         <Posts />
-      </Col>
-      <Col sm={4} className='my-3'>
-        <Friends />
-      </Col>
-    </Row>
+      </Grid>
+      <Hidden smDown>
+        <Grid item lg={4} md={4}>
+          <Friends />
+        </Grid>
+      </Hidden>
+    </Grid>
   );
 }
 

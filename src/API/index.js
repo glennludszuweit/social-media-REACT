@@ -10,5 +10,10 @@ export const logout = (userData) =>
   axios.post(`${URL}/auth/logout`, { refreshToken: userData });
 
 //POSTS
+export const getPosts = () => axios.get(`${URL}/post`);
+export const addPost = (postData) => axios.post(`${URL}/post`, postData);
+export const editPost = (postData) => axios.post(`${URL}/post/edit`, postData);
+export const deletePost = (postData) =>
+  axios.post(`${URL}/post/delete`, postData);
 
 //USERS

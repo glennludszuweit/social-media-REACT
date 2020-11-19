@@ -3,21 +3,21 @@ import { logout } from '../../Redux/Actions/auth';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useStyles } from './styles';
-import Search from '../../Components/Global/Search/Search';
+import Search from '../../Components/Search/Search';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import PeopleIcon from '@material-ui/icons/People';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import BrokenImageIcon from '@material-ui/icons/BrokenImage';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import AddIcon from '@material-ui/icons/Add';
+import { Avatar } from '@material-ui/core';
 
 function Header() {
   const classes = useStyles();
@@ -82,10 +82,8 @@ function Header() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
+      className={classes.mobileMenuBar}
     >
-      <MenuItem className={classes.iconMenu}>
-        <Search />
-      </MenuItem>
       <MenuItem className={classes.iconMenu}>
         <IconButton color='inherit'>
           <MenuBookIcon />
@@ -103,13 +101,11 @@ function Header() {
         </p>
       </MenuItem>
       <MenuItem className={classes.iconMenu}>
-        <IconButton aria-label='show 4 new mails' color='inherit'>
-          <Badge badgeContent={4} color='secondary'>
-            <MailIcon />
-          </Badge>
+        <IconButton color='inherit'>
+          <AddIcon />
         </IconButton>
         <p>
-          <Link to='/Messages'>Messages</Link>
+          <Link to='/posts/add'>Add post</Link>
         </p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen} className={classes.iconMenu}>
@@ -149,14 +145,15 @@ function Header() {
     <div className={classes.grow}>
       <AppBar position='static'>
         <Toolbar className={classes.root}>
-          <Typography>
-            <Link to='/'>
-              <BrokenImageIcon />
-            </Link>
-          </Typography>
-
-          <div className={classes.sectionDesktop}>
+          <div className={classes.searchContainer}>
+            <Typography className='mr-4'>
+              <Link to='/'>
+                <BrokenImageIcon fontSize='large' />
+              </Link>
+            </Typography>
             <Search />
+          </div>
+          <div className={classes.sectionDesktop}>
             <IconButton color='inherit'>
               <Link to='/posts'>
                 <MenuBookIcon />
@@ -167,12 +164,10 @@ function Header() {
                 <PeopleIcon />
               </Link>
             </IconButton>
-            <IconButton aria-label='show 4 new mails' color='inherit'>
-              <Badge badgeContent={4} color='secondary'>
-                <Link to='/messages'>
-                  <MailIcon />
-                </Link>
-              </Badge>
+            <IconButton color='inherit'>
+              <Link to='#'>
+                <AddIcon />
+              </Link>
             </IconButton>
             <IconButton
               edge='end'
@@ -182,7 +177,7 @@ function Header() {
               onClick={handleProfileMenuOpen}
               color='inherit'
             >
-              <AccountCircle />
+              <Avatar alt='Remy Sharp' src='' />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
@@ -205,9 +200,9 @@ function Header() {
     <div className={classes.grow}>
       <AppBar position='static'>
         <Toolbar className={classes.root}>
-          <Typography>
+          <Typography fontSize='large'>
             <Link to='/'>
-              <BrokenImageIcon />
+              <BrokenImageIcon fontSize='large' />
             </Link>
           </Typography>
           <IconButton color='inherit'>

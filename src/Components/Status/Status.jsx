@@ -44,7 +44,7 @@ function Status() {
             {auth.request === 'login' ? (
               <div>Failed! please check credentials.</div>
             ) : auth.request === 'register' ? (
-              <div>Failed! Check email or password</div>
+              <div>Failed! Check email or password.</div>
             ) : null}
           </Alert>
         </Snackbar>

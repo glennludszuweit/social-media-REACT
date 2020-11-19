@@ -1,14 +1,3 @@
-const defaultState = {
-  email: '',
-  password: '',
-  name: '',
-  message: '',
-  request: '',
-  status: null,
-  tokens: false,
-  refreshTokens: false,
-};
-
 const localStorageState = JSON.parse(localStorage.getItem('social-auth'));
 
 const auth = (state = localStorageState, action) => {
@@ -34,6 +23,8 @@ const auth = (state = localStorageState, action) => {
       return {
         request: 'logout',
         status: true,
+        tokens: false,
+        refreshTokens: false,
       };
 
     default:

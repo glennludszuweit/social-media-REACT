@@ -7,7 +7,7 @@ import Posts from '../../Components/Posts/Posts';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 import { useStyles } from './styles';
-import Status from '../../Components/Global/Status/Status';
+import Status from '../../Components/Status/Status';
 import { useSelector } from 'react-redux';
 
 function Main() {
@@ -15,7 +15,12 @@ function Main() {
   const auth = useSelector((state) => state.auth);
 
   if (!auth.tokens) {
-    return <Auth />;
+    return (
+      <Container className={classes.root}>
+        <Status />
+        <Auth />
+      </Container>
+    );
   }
 
   return (

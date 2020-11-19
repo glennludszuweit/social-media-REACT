@@ -57,6 +57,8 @@ function Register() {
               setUserData({ ...userData, email: e.target.value })
             }
           />
+          <small>Please enter a valid email address.</small>
+
           <TextField
             variant='outlined'
             margin='normal'
@@ -68,6 +70,7 @@ function Register() {
               setUserData({ ...userData, password: e.target.value })
             }
           />
+          <small>Password must be at least 8 characters.</small>
           <div className={classes.submit}>
             <button type='submit' onClick={handleSubmit}>
               Register

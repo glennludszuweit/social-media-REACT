@@ -12,15 +12,23 @@ export const getPosts = () => async (dispatch) => {
   }
 };
 
-export const addPost = (postData) => async (dispatch) => {
+export const addPost = (postData, header) => async (dispatch) => {
   try {
-    await api.addPost(postData);
+    const res = await api.addPost(postData, header);
     dispatch({
       type: 'ADD_POSTS',
+      postData: res.data,
     });
   } catch (error) {
     console.log(error);
   }
+};
+
+export const addForm = (status) => (dispatch) => {
+  dispatch({
+    type: 'ADD_FORM',
+    openForm: status,
+  });
 };
 
 export const editPost = (postData) => async (dispatch) => {

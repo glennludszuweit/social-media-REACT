@@ -3,7 +3,6 @@ import * as api from '../../API';
 export const login = (userData) => async (dispatch) => {
   try {
     const res = await api.login(userData);
-    console.log(res);
     dispatch({
       type: 'LOGIN',
       status: true,

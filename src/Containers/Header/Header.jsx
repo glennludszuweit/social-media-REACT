@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../Redux/Actions/auth';
 import { useState } from 'react';
+import { addForm } from '../../Redux/Actions/posts';
 import { Link } from 'react-router-dom';
 import { useStyles } from './styles';
 import Search from '../../Components/Search/Search';
@@ -100,7 +101,10 @@ function Header() {
           <Link to='/users'>Users</Link>
         </p>
       </MenuItem>
-      <MenuItem className={classes.iconMenu}>
+      <MenuItem
+        className={classes.iconMenu}
+        onClick={() => dispatch(addForm(true))}
+      >
         <IconButton color='inherit'>
           <AddIcon />
         </IconButton>
@@ -164,7 +168,7 @@ function Header() {
                 <PeopleIcon />
               </Link>
             </IconButton>
-            <IconButton color='inherit'>
+            <IconButton color='inherit' onClick={() => dispatch(addForm(true))}>
               <Link to='#'>
                 <AddIcon />
               </Link>

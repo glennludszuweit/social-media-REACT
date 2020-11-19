@@ -6,7 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Avatar, IconButton, TableHead, Typography } from '@material-ui/core';
+import { Avatar, IconButton, TableHead } from '@material-ui/core';
 import TextsmsIcon from '@material-ui/icons/Textsms';
 
 function Friends() {

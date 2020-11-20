@@ -2,7 +2,7 @@ const defaultState = {
   author: '',
   comments: [],
   id: '',
-  message: '',
+  message: 'You have no posts yet.',
   parent: {},
   parentModel: '',
   reactions: [],
@@ -17,12 +17,10 @@ const posts = (state = defaultState, action) => {
       };
 
     case 'GET_POSTS':
-      return {
-        postData: action.postData,
-      };
+      return { ...state.postData, postData: action.postData };
 
     case 'ADD_POST':
-      return { ...state, postData: action.postData };
+      return { ...state.postData, postData: action.postData };
 
     case 'EDIT_POST':
       return {};

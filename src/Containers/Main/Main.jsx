@@ -17,7 +17,6 @@ function Main() {
   if (!auth.tokens) {
     return (
       <Container className={classes.root}>
-        <Status />
         <Auth />
       </Container>
     );

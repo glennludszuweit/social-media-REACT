@@ -5,7 +5,7 @@ export const getPosts = () => async (dispatch) => {
     const res = await api.getPosts();
     dispatch({
       type: 'GET_POSTS',
-      postData: await res.data,
+      postData: res.data,
     });
   } catch (error) {
     console.log(error);
@@ -17,7 +17,7 @@ export const addPost = (postData) => async (dispatch) => {
     const res = await api.addPost(postData);
     dispatch({
       type: 'ADD_POSTS',
-      postData: await res.data,
+      postData: res.data,
     });
   } catch (error) {
     console.log(error);

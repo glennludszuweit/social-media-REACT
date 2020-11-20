@@ -1,7 +1,18 @@
-const posts = (state = {}, action) => {
+const defaultState = {
+  author: '',
+  comments: [],
+  id: '',
+  message: '',
+  parent: {},
+  parentModel: '',
+  reactions: [],
+};
+
+const posts = (state = defaultState, action) => {
   switch (action.type) {
     case 'ADD_FORM':
       return {
+        postData: state.postData,
         openForm: action.openForm,
       };
 

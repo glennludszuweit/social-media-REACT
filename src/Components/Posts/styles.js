@@ -21,11 +21,4 @@ export const useStyles = makeStyles({
   icon: {
     margin: '0 10px',
   },
-  commentsLists: {
-    padding: 10,
-    marginTop: 10,
-  },
-  commentInput: {
-    margin: '20px 0 10px',
-  },
 });

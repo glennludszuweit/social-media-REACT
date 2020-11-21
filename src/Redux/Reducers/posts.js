@@ -13,20 +13,26 @@ const posts = (state = defaultState, action) => {
     case 'ADD_FORM':
       return {
         postData: state.postData,
-        openForm: action.openForm,
+        openAddForm: action.openAddForm,
+      };
+
+    case 'EDIT_FORM':
+      return {
+        postData: state.postData,
+        openEditForm: action.openEditForm,
       };
 
     case 'GET_POSTS':
-      return { ...state.postData, postData: action.postData };
+      return { postData: action.postData };
 
     case 'ADD_POST':
-      return { ...state.postData, postData: action.postData };
+      return { ...state, postData: action.postData };
 
     case 'EDIT_POST':
       return {};
 
     case 'DELETE_POST':
-      return {};
+      return { postData: action.postData };
 
     default:
       return state;

@@ -1,17 +1,11 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { deletePost, editForm } from '../../Redux/Actions/posts.js';
 import { useStyles } from './styles';
-import {
-  Avatar,
-  Box,
-  Button,
-  Collapse,
-  IconButton,
-  InputAdornment,
-  Paper,
-  TextField,
-} from '@material-ui/core';
+import PostEdit from './PostEdit/PostEdit';
+import Comments from '../Comments/Comments';
+import { Avatar, Box, Collapse, IconButton } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -19,14 +13,13 @@ import CardContent from '@material-ui/core/CardContent';
 import Hidden from '@material-ui/core/Hidden';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import ReplyIcon from '@material-ui/icons/Reply';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import CloseIcon from '@material-ui/icons/Close';
-import SendIcon from '@material-ui/icons/Send';
 
 function Posts() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts.postData);
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(-1);
@@ -48,91 +41,80 @@ function Posts() {
                 </Hidden>
                 <div className={classes.cardDetails}>
                   <CardContent>
-                    <Button
+                    <Link
+                      to='#'
                       id={index}
-                      color='primary'
                       onClick={() => {
                         setSelected(index);
-                        setOpen(!open);
+                        setOpen(true);
+                        dispatch(editForm(false));
                       }}
                     >
                       <Typography variant='h6'>
                         {post.message.slice(0, 20)}
                       </Typography>
-                    </Button>
+                    </Link>
                     <Typography color='textSecondary'>16/11/2020</Typography>
                   </CardContent>
                 </div>
-                <div className={classes.postIcons}>
-                  <IconButton
-                    className={classes.icon}
-                    color='primary'
-                    size='small'
-                    onClick={() => {}}
-                  >
-                    <ThumbUpIcon fontSize='small' />
-                  </IconButton>
-                  <IconButton
-                    className={classes.icon}
-                    color='secondary'
-                    size='small'
-                    onClick={() => {}}
-                  >
-                    <ThumbDownIcon fontSize='small' />
-                  </IconButton>
-                </div>
+                <Hidden xsDown>
+                  <div className={classes.postIcons}>
+                    <IconButton color='primary' onClick={() => {}}>
+                      <ThumbUpIcon fontSize='small' />
+                    </IconButton>
+                    <IconButton color='secondary' onClick={() => {}}>
+                      <ThumbDownIcon fontSize='small' />
+                    </IconButton>
+                    <IconButton
+                      onClick={() => {
+                        setSelected(index);
+                        setOpen(true);
+                        dispatch(editForm(true));
+                      }}
+                    >
+                      <EditIcon fontSize='small' />
+                    </IconButton>
+                    <IconButton onClick={() => dispatch(deletePost(post.id))}>
+                      <DeleteIcon fontSize='small' />
+                    </IconButton>
+                  </div>
+                </Hidden>
               </div>
 
               {selected === index ? (
                 <Collapse in={open} timeout='auto' unmountOnExit>
                   <Box margin={2}>
                     <div align='right'>
-                      <IconButton onClick={() => setOpen(false)}>
+                      <IconButton
+                        onClick={() => {
+                          setOpen(false);
+                          dispatch(editForm(false));
+                        }}
+                      >
                         <CloseIcon fontSize='small' />
                       </IconButton>
                     </div>
-                    <Typography variant='h6'>{post.message}</Typography>
-
-                    <small>Comments</small>
-
-                    <Paper className={classes.commentsLists} elevation={0}>
-                      <Typography>This is a sample comment.</Typography>
+                    <PostEdit post={post} />
+                    <Hidden smUp>
                       <div align='right'>
-                        <IconButton>
-                          <ReplyIcon fontSize='small' />
+                        <IconButton color='primary' onClick={() => {}}>
+                          <ThumbUpIcon fontSize='small' />
                         </IconButton>
-                        <IconButton>
+                        <IconButton color='secondary' onClick={() => {}}>
+                          <ThumbDownIcon fontSize='small' />
+                        </IconButton>
+                        <IconButton onClick={() => {}}>
                           <EditIcon fontSize='small' />
                         </IconButton>
-                        <IconButton>
+                        <IconButton
+                          onClick={() => dispatch(deletePost(post.id))}
+                        >
                           <DeleteIcon fontSize='small' />
                         </IconButton>
                       </div>
-                    </Paper>
+                    </Hidden>
                     <hr />
-
-                    <div>
-                      <TextField
-                        className={classes.commentInput}
-                        placeholder='Write comment ...'
-                        InputProps={{
-                          endAdornment: (
-                            <InputAdornment position='start'>
-                              <div align='right'>
-                                <SendIcon
-                                  style={{ cursor: 'pointer' }}
-                                  fontSize='small'
-                                  color='primary'
-                                />
-                              </div>
-                            </InputAdornment>
-                          ),
-                        }}
-                        variant='outlined'
-                        multiline
-                        fullWidth
-                      />
-                    </div>
+                    <Comments />
                   </Box>
                 </Collapse>
               ) : null}

@@ -24,7 +24,7 @@ function PostAdd() {
     dispatch(addForm(false));
   };
 
-  return posts.openForm ? (
+  return posts.openAddForm ? (
     <Paper elevation={3} className={classes.textField}>
       <TextField
         id='outlined-multiline-static'
@@ -39,12 +39,11 @@ function PostAdd() {
           endAdornment: (
             <InputAdornment position='start'>
               <div align='right'>
-                <IconButton>
+                <IconButton onClick={handleSubmit}>
                   <SendIcon
                     style={{ cursor: 'pointer' }}
                     fontSize='large'
                     color='primary'
-                    onClick={handleSubmit}
                   />
                 </IconButton>
               </div>

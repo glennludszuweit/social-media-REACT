@@ -5,6 +5,7 @@ export const useStyles = makeStyles({
     margin: 20,
     position: 'relative',
   },
+
   close: {
     position: 'absolute',
     right: 4,

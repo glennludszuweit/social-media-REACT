@@ -87,18 +87,10 @@ function Header() {
     >
       <MenuItem className={classes.iconMenu}>
         <IconButton color='inherit'>
-          <MenuBookIcon />
-        </IconButton>
-        <p>
-          <Link to='/posts'>posts</Link>
-        </p>
-      </MenuItem>
-      <MenuItem className={classes.iconMenu}>
-        <IconButton color='inherit'>
           <PeopleIcon />
         </IconButton>
         <p>
-          <Link to='/users'>Users</Link>
+          <Link to='/friends'>Friends</Link>
         </p>
       </MenuItem>
       <MenuItem
@@ -158,19 +150,9 @@ function Header() {
                 <BrokenImageIcon fontSize='large' />
               </Link>
             </Typography>
-            <Search />
           </div>
+          <Search />
           <div className={classes.sectionDesktop}>
-            <IconButton color='inherit'>
-              <Link to='/posts'>
-                <MenuBookIcon />
-              </Link>
-            </IconButton>
-            <IconButton color='inherit'>
-              <Link to='/users'>
-                <PeopleIcon />
-              </Link>
-            </IconButton>
             <IconButton color='inherit' onClick={() => dispatch(addForm(true))}>
               <Link to='#'>
                 <AddIcon />

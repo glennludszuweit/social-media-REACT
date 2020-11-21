@@ -10,12 +10,9 @@ function Search() {
 
   return (
     <Paper component='form' className={classes.root}>
-      <IconButton className={classes.iconButton} aria-label='menu'>
-        <MenuIcon />
-      </IconButton>
       <InputBase
         className={classes.input}
-        placeholder='Search'
+        placeholder='Search User by name or location'
         inputProps={{ 'aria-label': 'search google maps' }}
       />
       <IconButton

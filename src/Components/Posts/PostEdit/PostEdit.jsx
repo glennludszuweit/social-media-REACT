@@ -25,14 +25,18 @@ function EditPost({ post }) {
   };
 
   return posts.openEditForm ? (
-    <Paper elevation={3} className={classes.textField}>
+    <Paper className={classes.textField}>
       <TextField
         id='outlined-multiline-static'
+        border='0'
         multiline
         fullWidth
         rows={10}
         defaultValue={post.message}
         variant='outlined'
+        className={
+          (classes.cssOutlinedInput, classes.cssFocused, classes.notchedOutline)
+        }
         onChange={(e) => setPostData({ ...postData, message: e.target.value })}
         InputProps={{
           endAdornment: (

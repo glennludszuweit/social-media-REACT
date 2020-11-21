@@ -64,7 +64,7 @@ function Header() {
       </MenuItem>
       <MenuItem
         onClick={() => {
-          dispatch(logout(auth.refreshTokens));
+          dispatch(logout(auth.refreshToken));
           handleMenuClose();
         }}
       >
@@ -74,7 +74,7 @@ function Header() {
   );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = auth.tokens ? (
+  const renderMobileMenu = auth.token ? (
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -119,7 +119,10 @@ function Header() {
           aria-haspopup='true'
           color='inherit'
         >
-          <AccountCircle />
+          <Avatar
+            alt='Remy Sharp'
+            src='https://images.unsplash.com/photo-1536706936563-c9e47fc563df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
+          />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -145,7 +148,7 @@ function Header() {
     </Menu>
   );
 
-  return auth.tokens ? (
+  return auth.token ? (
     <div className={classes.grow}>
       <AppBar position='static'>
         <Toolbar className={classes.root}>
@@ -181,7 +184,10 @@ function Header() {
               onClick={handleProfileMenuOpen}
               color='inherit'
             >
-              <Avatar alt='Remy Sharp' src='' />
+              <Avatar
+                alt='Remy Sharp'
+                src='https://images.unsplash.com/photo-1536706936563-c9e47fc563df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
+              />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>

@@ -8,16 +8,16 @@ export const login = (userData) => async (dispatch) => {
       status: true,
       message: 'Success',
       user: res.data.user,
-      tokens: res.data.tokens.access.token,
-      refreshTokens: res.data.tokens.refresh.token,
+      token: res.data.tokens.access.token,
+      refreshToken: res.data.tokens.refresh.token,
     });
   } catch (error) {
     dispatch({
       type: 'LOGIN',
       status: false,
       user: false,
-      tokens: false,
-      refreshTokens: false,
+      token: false,
+      refreshToken: false,
     });
     console.log(error);
   }
@@ -30,16 +30,16 @@ export const register = (userData) => async (dispatch) => {
       type: 'REGISTER',
       status: true,
       user: res.data.user,
-      tokens: res.data.tokens.access.token,
-      refreshTokens: res.data.tokens.refresh.token,
+      token: res.data.tokens.access.token,
+      refreshToken: res.data.tokens.refresh.token,
     });
   } catch (error) {
     dispatch({
       type: 'REGISTER',
       status: false,
       user: false,
-      tokens: false,
-      refreshTokens: false,
+      token: false,
+      refreshToken: false,
     });
     console.log(error.message);
   }

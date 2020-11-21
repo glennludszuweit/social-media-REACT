@@ -11,7 +11,7 @@ Store.subscribe(() => {
 });
 
 (function () {
-  const token = Store.getState().auth.tokens;
+  const token = Store.getState().auth.token;
   if (token) {
     Axios.defaults.headers.common['Authorization'] = token;
   } else {

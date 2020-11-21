@@ -14,7 +14,7 @@ function Main() {
   const classes = useStyles();
   const auth = useSelector((state) => state.auth);
 
-  if (!auth.tokens) {
+  if (!auth.token) {
     return (
       <Container className={classes.root}>
         <Auth />

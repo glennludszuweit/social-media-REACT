@@ -7,5 +7,6 @@ export const useStyles = makeStyles({
   },
   commentInput: {
     margin: '20px 0 10px',
+    backgroundColor: '#FFF',
   },
 });

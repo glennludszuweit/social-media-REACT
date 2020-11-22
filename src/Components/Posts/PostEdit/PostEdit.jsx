@@ -27,8 +27,6 @@ function EditPost({ post }) {
   return posts.openEditForm ? (
     <Paper className={classes.textField}>
       <TextField
-        id='outlined-multiline-static'
-        border='0'
         multiline
         fullWidth
         rows={10}

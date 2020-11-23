@@ -6,30 +6,33 @@ const defaultState = {
   parent: {},
   parentModel: '',
   reactions: [],
+  postData: [],
 };
 
 const posts = (state = defaultState, action) => {
   switch (action.type) {
     case 'ADD_FORM':
       return {
+        ...state,
         postData: state.postData,
         openAddForm: action.openAddForm,
       };
 
     case 'EDIT_FORM':
       return {
+        ...state,
         postData: state.postData,
         openEditForm: action.openEditForm,
       };
 
     case 'GET_POSTS':
-      return { postData: action.postData };
-
-    case 'ADD_POST':
       return { ...state, postData: action.postData };
 
+    case 'ADD_POST':
+      return { ...state, postData: [...state.postData, action.postData] };
+
     case 'EDIT_POST':
-      return {};
+      return { ...state, postData: [...state.postData, action.postData] };
 
     case 'DELETE_POST':
       return { postData: action.postData };

@@ -31,6 +31,7 @@ function PostAdd() {
         label='Add post'
         multiline
         fullWidth
+        required
         rows={10}
         placeholder='add your post here'
         variant='outlined'

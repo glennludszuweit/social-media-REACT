@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editForm } from '../../../Redux/Actions/posts';
+import { editForm, editPost } from '../../../Redux/Actions/posts';
 import { useStyles } from './styles';
 import {
   IconButton,
@@ -20,10 +20,6 @@ function EditPost({ post }) {
     message: '',
   });
 
-  const handleSubmit = () => {
-    dispatch(editForm(false));
-  };
-
   return posts.openEditForm ? (
     <Paper className={classes.textField}>
       <TextField
@@ -40,7 +36,12 @@ function EditPost({ post }) {
           endAdornment: (
             <InputAdornment position='start'>
               <div align='right'>
-                <IconButton onClick={handleSubmit}>
+                <IconButton
+                  onClick={() => {
+                    dispatch(editPost(post.id, postData));
+                    dispatch(editForm(false));
+                  }}
+                >
                   <SendIcon
                     style={{ cursor: 'pointer' }}
                     fontSize='large'

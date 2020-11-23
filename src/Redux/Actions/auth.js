@@ -45,7 +45,7 @@ export const register = (userData) => async (dispatch) => {
   }
 };
 
-export const logout = (userData) => async (dispatch) => {
-  await api.logout(userData);
+export const logout = (userRefreshToken) => async (dispatch) => {
+  await api.logout(userRefreshToken);
   dispatch({ type: 'LOGOUT' });
 };

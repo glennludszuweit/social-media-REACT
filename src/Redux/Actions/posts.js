@@ -17,7 +17,6 @@ export const editForm = (status) => (dispatch) => {
 export const getPosts = () => async (dispatch) => {
   try {
     const res = await api.getPosts();
-    console.log(res);
     dispatch({
       type: 'GET_POSTS',
       postData: res.data,
@@ -34,14 +33,15 @@ export const addPost = (postData) => async (dispatch) => {
       type: 'ADD_POSTS',
       postData: res.data,
     });
+    await getPosts()(dispatch);
   } catch (error) {
     console.log(error);
   }
 };
 
-export const editPost = (postData) => async (dispatch) => {
+export const editPost = (postId, postData) => async (dispatch) => {
   try {
-    await api.editPost(postData);
+    await api.editPost(postId, postData);
     dispatch({
       type: 'EDIT_POSTS',
     });
@@ -50,12 +50,13 @@ export const editPost = (postData) => async (dispatch) => {
   }
 };
 
-export const deletePost = (postData) => async (dispatch) => {
+export const deletePost = (postId) => async (dispatch) => {
   try {
-    await api.deletePost(postData);
+    await api.deletePost(postId);
     dispatch({
       type: 'DELETE_POSTS',
     });
+    await getPosts()(dispatch);
   } catch (error) {
     console.log(error);
   }

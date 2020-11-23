@@ -1,20 +1,38 @@
-import { Col, Image, Row } from 'react-bootstrap';
-import UserPosts from '../UserPosts/UserPosts';
-import image from '../../../logo.svg';
+import { useState } from 'react';
+import { useStyles } from './styles';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 function UserView() {
+  const classes = useStyles();
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
-    <Row>
-      <Col sm={3} className='my-3'>
-        <Image src={image} rounded />
-        <p>User Name</p>
-        <p>User Location</p>
-        <p>Joined on: 8th June 2020</p>
-      </Col>
-      <Col sm={9} className='my-3'>
-        <UserPosts />
-      </Col>
-    </Row>
+    <Paper elevation={0} className={classes.root}>
+      <div align='center'>
+        <img
+          className={classes.userImage}
+          src='https://images.unsplash.com/photo-1542310441-c2c6c8da6d98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80'
+          alt='Smoking'
+        />
+      </div>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor='primary'
+        textColor='primary'
+        centered
+      >
+        <Tab label='Account Info' />
+        <Tab label='Posts' />
+        <Tab label='Friends' />
+      </Tabs>
+    </Paper>
   );
 }
 

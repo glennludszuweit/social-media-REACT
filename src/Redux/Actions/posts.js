@@ -41,10 +41,12 @@ export const addPost = (postData) => async (dispatch) => {
 
 export const editPost = (postId, postData) => async (dispatch) => {
   try {
-    await api.editPost(postId, postData);
+    const res = await api.editPost(postId, postData);
     dispatch({
       type: 'EDIT_POSTS',
+      postData: res.data,
     });
+    await getPosts()(dispatch);
   } catch (error) {
     console.log(error);
   }

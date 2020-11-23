@@ -9,12 +9,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import PeopleIcon from '@material-ui/icons/People';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import BrokenImageIcon from '@material-ui/icons/BrokenImage';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AddIcon from '@material-ui/icons/Add';
@@ -85,37 +82,15 @@ function Header() {
       onClose={handleMobileMenuClose}
       className={classes.mobileMenuBar}
     >
-      <MenuItem className={classes.iconMenu}>
-        <IconButton color='inherit'>
-          <PeopleIcon />
-        </IconButton>
-        <p>
-          <Link to='/friends'>Friends</Link>
-        </p>
-      </MenuItem>
       <MenuItem
         className={classes.iconMenu}
         onClick={() => dispatch(addForm(true))}
       >
-        <IconButton color='inherit'>
-          <AddIcon />
-        </IconButton>
         <p>
           <Link to='/posts/add'>Add post</Link>
         </p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen} className={classes.iconMenu}>
-        <IconButton
-          aria-label='account of current user'
-          aria-controls='primary-search-account-menu'
-          aria-haspopup='true'
-          color='inherit'
-        >
-          <Avatar
-            alt='Remy Sharp'
-            src='https://images.unsplash.com/photo-1536706936563-c9e47fc563df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
-          />
-        </IconButton>
         <p>Profile</p>
       </MenuItem>
     </Menu>

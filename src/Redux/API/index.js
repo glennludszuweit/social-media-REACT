@@ -9,6 +9,8 @@ export const register = (userData) =>
 export const logout = (userRefreshToken) =>
   axios.post(`${URL}/auth/logout`, { refreshToken: userRefreshToken });
 
+//USERS
+
 //POSTS
 export const getPosts = () => axios.get(`${URL}/post`);
 export const addPost = (postData) => axios.post(`${URL}/post`, postData);
@@ -16,4 +18,6 @@ export const editPost = (postId, postData) =>
   axios.patch(`${URL}/post/${postId}`, postData);
 export const deletePost = (postId) => axios.delete(`${URL}/post/${postId}`);
 
-//USERS
+//COMMENTS
+export const addComment = (postId, commentData) =>
+  axios.post(`${URL}/post/${postId}`, commentData);

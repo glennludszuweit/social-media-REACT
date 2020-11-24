@@ -133,7 +133,7 @@ function Posts() {
                       </div>
                     </Hidden>
                     <hr />
-                    <Comments />
+                    <Comments post={post} />
                   </Box>
                 </Collapse>
               ) : null}

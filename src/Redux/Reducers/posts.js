@@ -1,24 +1,27 @@
 const defaultState = {
-  author: '',
-  comments: [],
-  id: '',
-  message: 'You have no posts yet.',
-  parent: {},
-  parentModel: '',
-  reactions: [],
-  postData: [],
+  postData: [
+    {
+      author: '',
+      comments: [],
+      id: '',
+      message: 'You have no posts yet.',
+      parent: {},
+      parentModel: '',
+      reactions: [],
+    },
+  ],
 };
 
 const posts = (state = defaultState, action) => {
   switch (action.type) {
-    case 'ADD_FORM':
+    case 'ADD_POST_FORM':
       return {
         ...state,
         postData: state.postData,
         openAddForm: action.openAddForm,
       };
 
-    case 'EDIT_FORM':
+    case 'EDIT_POST_FORM':
       return {
         ...state,
         postData: state.postData,

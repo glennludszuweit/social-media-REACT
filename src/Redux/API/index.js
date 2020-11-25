@@ -21,3 +21,7 @@ export const deletePost = (postId) => axios.delete(`${URL}/post/${postId}`);
 //COMMENTS
 export const addComment = (postId, commentData) =>
   axios.post(`${URL}/post/${postId}`, commentData);
+export const editComment = (postId, commentId, commentData) =>
+  axios.patch(`${URL}/post/${postId}/${commentId}`, commentData);
+export const deleteComment = (postId, commentId) =>
+  axios.delete(`${URL}/post/${postId}/${commentId}`);

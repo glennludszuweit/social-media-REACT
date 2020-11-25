@@ -1,10 +1,12 @@
 const defaultState = {
+  openAddForm: false,
+  openEditForm: false,
   postData: [
     {
       author: '',
       comments: [],
       id: '',
-      message: 'You have no posts yet.',
+      message: '',
       parent: {},
       parentModel: '',
       reactions: [],

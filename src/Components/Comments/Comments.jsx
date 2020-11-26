@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addComment } from '../../Redux/Actions/comments';
+import { editForm } from '../../Redux/Actions/comments';
+import { deletePost } from '../../Redux/Actions/posts';
 import { useStyles } from './styles';
 import EditComment from './EditComment/EditComment';
 import {
@@ -13,7 +15,6 @@ import Typography from '@material-ui/core/Typography';
 import SendIcon from '@material-ui/icons/Send';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { editForm } from '../../Redux/Actions/comments';
 
 function Comments({ post }) {
   const classes = useStyles();
@@ -33,9 +34,7 @@ function Comments({ post }) {
             <EditComment post={post} comment={comment} />
           ) : (
             <Paper className={classes.commentsLists} elevation={0}>
-              <Typography>
-                {comment.message}, {comment.id}
-              </Typography>
+              <Typography>{comment.message}</Typography>
               <div align='right'>
                 <IconButton
                   onClick={() => {
@@ -45,7 +44,11 @@ function Comments({ post }) {
                 >
                   <EditIcon fontSize='small' />
                 </IconButton>
-                <IconButton>
+                <IconButton
+                  onClick={() => {
+                    dispatch(deletePost(comment.id));
+                  }}
+                >
                   <DeleteIcon fontSize='small' />
                 </IconButton>
               </div>

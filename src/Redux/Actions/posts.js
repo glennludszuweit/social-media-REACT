@@ -17,7 +17,6 @@ export const editForm = (status) => (dispatch) => {
 export const getPosts = () => async (dispatch) => {
   try {
     const res = await api.getPosts();
-    console.log(res.data);
     dispatch({
       type: 'GET_POSTS',
       postData: res.data,

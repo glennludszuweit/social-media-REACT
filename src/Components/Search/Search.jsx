@@ -1,28 +1,44 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchUser } from '../../Redux/Actions/users';
 import { useStyles } from './styles';
-import Paper from '@material-ui/core/Paper';
-import InputBase from '@material-ui/core/InputBase';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+import { Autocomplete } from '@material-ui/lab';
+import { TextField } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import UserView from '../Users/UserView/UserView';
 
 function Search() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const users = useSelector((state) => state.users.userData);
+  const [value, setValue] = useState(null);
+
+  useEffect(() => {
+    dispatch(searchUser(value, 'User', 'name'));
+  }, [value, dispatch]);
 
   return (
-    <Paper component='form' className={classes.root}>
-      <InputBase
-        className={classes.input}
-        placeholder='Search User by name or location'
-        inputProps={{ 'aria-label': 'search google maps' }}
-      />
-      <IconButton
-        type='submit'
-        className={classes.iconButton}
-        aria-label='search'
-      >
-        <SearchIcon />
-      </IconButton>
-    </Paper>
+    <Autocomplete
+      className={classes.root}
+      freeSolo
+      disableClearable
+      options={users.map((user) => user)}
+      getOptionLabel={(o) => o.name}
+      onInputChange={(e) => setValue(e.target.value)}
+      onChange={(e, v, r) =>
+        r === 'select-option' ? history.push(`/users/${v.id}`) : null
+      }
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          className={classes.input}
+          placeholder='Search user by name'
+          margin='normal'
+          InputProps={{ ...params.InputProps, type: 'search' }}
+        />
+      )}
+    />
   );
 }
 

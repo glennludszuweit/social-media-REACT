@@ -10,6 +10,8 @@ export const logout = (userRefreshToken) =>
   axios.post(`${URL}/auth/logout`, { refreshToken: userRefreshToken });
 
 //USERS
+export const searchUser = (match, type, field) =>
+  axios.post(`${URL}/search`, { match, type, field });
 
 //POSTS
 export const getPosts = () => axios.get(`${URL}/post`);
@@ -21,7 +23,3 @@ export const deletePost = (postId) => axios.delete(`${URL}/post/${postId}`);
 //COMMENTS
 export const addComment = (postId, commentData) =>
   axios.post(`${URL}/post/${postId}`, commentData);
-export const editComment = (postId, commentId, commentData) =>
-  axios.patch(`${URL}/post/${postId}/${commentId}`, commentData);
-export const deleteComment = (postId, commentId) =>
-  axios.delete(`${URL}/post/${postId}/${commentId}`);

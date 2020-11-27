@@ -4,12 +4,15 @@ const URL = 'https://sz.hktr.de/api';
 
 //AUTH
 export const login = (userData) => axios.post(`${URL}/auth/login`, userData);
+
 export const register = (userData) =>
   axios.post(`${URL}/auth/register`, userData);
+
 export const logout = (userRefreshToken) =>
   axios.post(`${URL}/auth/logout`, { refreshToken: userRefreshToken });
 
 //USERS
+export const getUser = (userId) => axios.get(`${URL}/user/${userId}`);
 export const searchUser = (match, type, field) =>
   axios.post(`${URL}/search`, { match, type, field });
 

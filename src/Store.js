@@ -18,7 +18,6 @@ Store.subscribe(() => {
   if (token) {
     Axios.defaults.headers.common['Authorization'] = token;
   } else {
-    // Axios.defaults.headers.common['Authorization'] = null;
     delete Axios.defaults.headers.common['Authorization'];
   }
 })();

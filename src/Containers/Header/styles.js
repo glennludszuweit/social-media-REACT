@@ -19,6 +19,7 @@ export const useStyles = makeStyles((theme) => ({
     backgroundColor: '#400100',
     color: '#E6E6E6',
     justifyContent: 'space-between',
+    alignItems: 'center',
     '& a': {
       color: '#e6e6e6',
       textDecoration: 'none',

@@ -31,8 +31,10 @@ function Search() {
       }}
       renderInput={(params) => (
         <TextField
-          {...params}
           className={classes.input}
+          {...params}
+          size='small'
+          variant='outlined'
           placeholder='Search user by name'
           margin='normal'
           InputProps={{ ...params.InputProps, type: 'search' }}

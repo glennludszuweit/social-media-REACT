@@ -3,11 +3,12 @@ import * as api from '../API';
 export const login = (userData) => async (dispatch) => {
   try {
     const res = await api.login(userData);
+    console.log(res.data);
     dispatch({
       type: 'LOGIN',
       status: true,
       message: 'Success',
-      user: res.data.user,
+      authUserData: res.data.user,
       token: res.data.tokens.access.token,
       refreshToken: res.data.tokens.refresh.token,
     });
@@ -15,7 +16,7 @@ export const login = (userData) => async (dispatch) => {
     dispatch({
       type: 'LOGIN',
       status: false,
-      user: false,
+      authUserData: false,
       token: false,
       refreshToken: false,
     });
@@ -29,7 +30,7 @@ export const register = (userData) => async (dispatch) => {
     dispatch({
       type: 'REGISTER',
       status: true,
-      user: res.data.user,
+      authUserData: res.data.user,
       token: res.data.tokens.access.token,
       refreshToken: res.data.tokens.refresh.token,
     });
@@ -37,7 +38,7 @@ export const register = (userData) => async (dispatch) => {
     dispatch({
       type: 'REGISTER',
       status: false,
-      user: false,
+      authUserData: false,
       token: false,
       refreshToken: false,
     });

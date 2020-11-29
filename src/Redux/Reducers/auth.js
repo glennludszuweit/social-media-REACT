@@ -1,5 +1,5 @@
 const localStorageState = JSON.parse(localStorage.getItem('social-auth'));
-let defaultState = { token: false, refreshToken: false };
+let defaultState = { token: false, refreshToken: false, authUserData: {} };
 if (localStorageState) defaultState = localStorageState;
 
 const auth = (state = defaultState, action) => {
@@ -10,6 +10,7 @@ const auth = (state = defaultState, action) => {
         status: action.status,
         token: action.token,
         refreshToken: action.refreshToken,
+        authUserData: action.authUserData,
       };
 
     case 'REGISTER':
@@ -18,6 +19,7 @@ const auth = (state = defaultState, action) => {
         status: action.status,
         token: action.token,
         refreshToken: action.refreshToken,
+        authUserData: action.authUserData,
       };
 
     case 'LOGOUT':
@@ -27,6 +29,7 @@ const auth = (state = defaultState, action) => {
         status: true,
         token: false,
         refreshToken: false,
+        authUserData: {},
       };
 
     default:

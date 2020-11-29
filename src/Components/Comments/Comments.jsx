@@ -20,6 +20,7 @@ function Comments({ post }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const comments = useSelector((state) => state.comments);
+  const authID = useSelector((state) => state.auth.authUserData.id);
   const [selected, setSelected] = useState(-1);
   const [comment, setComment] = useState({
     message: '',
@@ -34,24 +35,27 @@ function Comments({ post }) {
             <EditComment post={post} comment={comment} />
           ) : (
             <Paper className={classes.commentsLists} elevation={0}>
+              <small>{comment.author.name}</small>
               <Typography>{comment.message}</Typography>
-              <div align='right'>
-                <IconButton
-                  onClick={() => {
-                    dispatch(editForm(true));
-                    setSelected(index);
-                  }}
-                >
-                  <EditIcon fontSize='small' />
-                </IconButton>
-                <IconButton
-                  onClick={() => {
-                    dispatch(deletePost(comment.id));
-                  }}
-                >
-                  <DeleteIcon fontSize='small' />
-                </IconButton>
-              </div>
+              {comment.author.id === authID ? (
+                <div align='right'>
+                  <IconButton
+                    onClick={() => {
+                      dispatch(editForm(true));
+                      setSelected(index);
+                    }}
+                  >
+                    <EditIcon fontSize='small' />
+                  </IconButton>
+                  <IconButton
+                    onClick={() => {
+                      dispatch(deletePost(comment.id));
+                    }}
+                  >
+                    <DeleteIcon fontSize='small' />
+                  </IconButton>
+                </div>
+              ) : null}
             </Paper>
           )}
         </div>

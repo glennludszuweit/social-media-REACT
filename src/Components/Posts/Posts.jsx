@@ -30,8 +30,8 @@ function Posts() {
   const authUser = useSelector((state) => state.auth.authUserData);
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(-1);
-  const [viewPosts, setViewPosts] = useState(false);
   const [view, setView] = useState(0);
+  const [viewPosts, setViewPosts] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -110,7 +110,11 @@ function Posts() {
                       >
                         <EditIcon fontSize='small' />
                       </IconButton>
-                      <IconButton onClick={() => dispatch(deletePost(post.id))}>
+                      <IconButton
+                        onClick={() =>
+                          dispatch(deletePost(post.id, post.author.id))
+                        }
+                      >
                         <DeleteIcon fontSize='small' />
                       </IconButton>
                     </span>
@@ -154,7 +158,9 @@ function Posts() {
                             <EditIcon fontSize='small' />
                           </IconButton>
                           <IconButton
-                            onClick={() => dispatch(deletePost(post.id))}
+                            onClick={() =>
+                              dispatch(deletePost(post.id, post.author.id))
+                            }
                           >
                             <DeleteIcon fontSize='small' />
                           </IconButton>

@@ -38,7 +38,7 @@ function EditPost({ post }) {
               <div align='right'>
                 <IconButton
                   onClick={() => {
-                    dispatch(editPost(post.id, postData));
+                    dispatch(editPost(post.id, postData, post.author.id));
                     dispatch(editForm(false));
                   }}
                 >

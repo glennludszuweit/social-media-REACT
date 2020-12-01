@@ -21,7 +21,7 @@ const posts = (state = defaultState, action) => {
       };
 
     case 'GET_POSTS':
-      return { postData: action.postData };
+      return { ...state, postData: action.postData };
 
     case 'ADD_POST':
       return { ...state, postData: [...state.postData, action.postData] };
@@ -30,10 +30,10 @@ const posts = (state = defaultState, action) => {
       return { ...state, postData: [...state.postData, action.postData] };
 
     case 'DELETE_POST':
-      return { postData: action.postData };
+      return { ...state };
 
     case 'CLEAR_POST_DATA':
-      return { ...state, postData: [] };
+      return defaultState;
 
     default:
       return state;

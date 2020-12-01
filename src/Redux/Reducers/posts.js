@@ -31,7 +31,7 @@ const posts = (state = defaultState, action) => {
       };
 
     case 'GET_POSTS':
-      return { ...state, postData: action.postData };
+      return { postData: action.postData };
 
     case 'ADD_POST':
       return { ...state, postData: [...state.postData, action.postData] };

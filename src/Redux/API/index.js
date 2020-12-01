@@ -11,6 +11,8 @@ export const logout = (userRefreshToken) =>
 
 //USERS
 export const getUser = (userId) => axios.get(`${URL}/user/${userId}`);
+export const getUserPosts = (userId) =>
+  axios.get(`${URL}/user/posts/${userId}`);
 export const searchUser = (match, type, field) =>
   axios.post(`${URL}/search`, { match, type, field });
 

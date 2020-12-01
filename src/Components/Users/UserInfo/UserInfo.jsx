@@ -1,9 +1,10 @@
 import React from 'react';
 
-function UserInfo() {
+function UserInfo({ user }) {
   return (
     <div>
-      <h1>UserInfo</h1>
+      <h1>{user.name}</h1>
+      <h1>{user.email}</h1>
     </div>
   );
 }

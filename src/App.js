@@ -7,7 +7,6 @@ import Main from './Containers/Main/Main';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useStyles } from './styles';
-import { searchUser } from './Redux/Actions/users';
 
 const theme = createMuiTheme({
   palette: {

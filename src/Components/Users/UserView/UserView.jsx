@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getUser } from '../../../Redux/Actions/users';
+import { getUser, getUserPosts } from '../../../Redux/Actions/users';
 import { useStyles } from './styles';
-import Posts from '../../Posts/Posts';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
 import { Box, Typography } from '@material-ui/core';
+import UserFriends from '../UserFriends/UserFriends';
+import UserPosts from '../UserPosts/UserPosts';
+import UserGroups from '../UserGroups/UserGroups';
+import UserInfo from '../UserInfo/UserInfo';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -21,7 +24,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box style={{ width: 600, margin: '0 auto', padding: '20px 5px' }}>
+        <Box style={{ maxWidth: 600, margin: '0 auto', padding: '20px 5px' }}>
           <Typography component={'span'}>{children}</Typography>
         </Box>
       )}
@@ -47,7 +50,9 @@ function UserView() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const user = useSelector((state) => state.users.userData);
+  const userPosts = useSelector((state) => state.users.userPosts);
   const authUser = useSelector((state) => state.auth.authUserData);
+  const authUserPosts = useSelector((state) => state.posts.postData);
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -55,12 +60,25 @@ function UserView() {
 
   useEffect(() => {
     dispatch(getUser(id));
+    dispatch(getUserPosts(id));
   }, [dispatch, id]);
 
   return (
     <Paper elevation={0} className={classes.root}>
       <div align='center'>
-        <img className={classes.userImage} src={user.avatar} alt={user.name} />
+        {authUser.avatar ? (
+          <img
+            className={classes.userImage}
+            src={authUser.avatar}
+            alt={authUser.name}
+          />
+        ) : user.avatar ? (
+          <img
+            className={classes.userImage}
+            src={user.avatar}
+            alt={user.name}
+          />
+        ) : null}
       </div>
       <Tabs
         value={value}
@@ -78,33 +96,31 @@ function UserView() {
       {id === authUser.id ? (
         <div>
           <TabPanel value={value} index={0}>
-            <h1>{authUser.name}</h1>
-            <h1>{authUser.email}</h1>
+            <UserInfo user={authUser} />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <Posts />
+            <UserPosts posts={authUserPosts} />
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <h1>Friends</h1>
+            <UserFriends />
           </TabPanel>
           <TabPanel value={value} index={3}>
-            <h1>Groups</h1>
+            <UserGroups />
           </TabPanel>
         </div>
       ) : (
         <div>
           <TabPanel value={value} index={0}>
-            <h1>{user.name}</h1>
-            <h1>{user.email}</h1>
+            <UserInfo user={user} />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <h1>Posts</h1>
+            <UserPosts posts={userPosts} />
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <h1>Friends</h1>
+            <UserFriends />
           </TabPanel>
           <TabPanel value={value} index={3}>
-            <h1>Groups</h1>
+            <UserGroups />
           </TabPanel>
         </div>
       )}

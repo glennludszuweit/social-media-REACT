@@ -1,5 +1,5 @@
 import Posts from '../Posts/Posts';
-import Friends from '../Friends/Friends';
+import UserFriends from '../Users/UserFriends/UserFriends';
 import { Grid, Hidden } from '@material-ui/core';
 import { useStyles } from './styles.js';
 
@@ -13,7 +13,7 @@ function Home() {
       </Grid>
       <Hidden smDown>
         <Grid item lg={4} md={4}>
-          <Friends />
+          <UserFriends />
         </Grid>
       </Hidden>
     </Grid>

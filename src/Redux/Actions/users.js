@@ -3,7 +3,6 @@ import * as api from '../API';
 export const getUser = (userId) => async (dispatch) => {
   try {
     const res = await api.getUser(userId);
-    console.log(res.data);
     dispatch({
       type: 'GET_USER',
       userData: res.data,

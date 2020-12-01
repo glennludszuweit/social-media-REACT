@@ -57,7 +57,7 @@ function Header() {
       className={classes.iconMenu}
     >
       <MenuItem onClick={handleMenuClose}>
-        <Link to='/me'>My account</Link>
+        <Link to={`/profile/${auth.authUserData.id}`}>My account</Link>
       </MenuItem>
       <MenuItem
         onClick={() => {

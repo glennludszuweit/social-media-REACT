@@ -1,7 +1,6 @@
 import Home from '../../Components/Home/Home';
 import Auth from '../../Components/Auth/Auth';
-import User from '../../Components/Users/UserView/UserView';
-import Users from '../../Components/Users/Users';
+import UserView from '../../Components/Users/UserView/UserView';
 import Posts from '../../Components/Posts/Posts';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Container } from '@material-ui/core';
@@ -28,8 +27,8 @@ function Main() {
       <PostAdd />
       <Switch>
         <Route path='/posts' component={Posts} />
-        <Route path='/users/:id' component={User} />
-        <Route path='/users' component={Users} />
+        <Route path='/users/:id' component={UserView} />
+        <Route path='/profile/:id' component={UserView} />
         <Route exact path='/' component={Home} />
         <Redirect to='/' />
       </Switch>

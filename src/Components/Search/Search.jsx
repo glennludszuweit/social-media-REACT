@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser, searchUser } from '../../Redux/Actions/users';
+import { searchUser } from '../../Redux/Actions/users';
 import { useStyles } from './styles';
 import { Autocomplete } from '@material-ui/lab';
 import { TextField } from '@material-ui/core';

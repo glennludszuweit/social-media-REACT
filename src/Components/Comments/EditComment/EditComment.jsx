@@ -39,7 +39,7 @@ function EditComment({ post, comment }) {
                   onClick={() => {
                     dispatch(editForm(false));
                     dispatch(
-                      editPost(comment.id, commentMessage, comment.author.id)
+                      editPost(comment.id, commentMessage, post.author.id)
                     );
                     setCommentMessage({
                       message: '',

@@ -1,5 +1,4 @@
 import * as api from '../API';
-import { getPosts } from './posts';
 
 export const login = (userData) => async (dispatch) => {
   try {

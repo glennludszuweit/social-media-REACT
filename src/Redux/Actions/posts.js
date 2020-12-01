@@ -1,4 +1,5 @@
 import * as api from '../API';
+import { getUserPosts } from './users';
 
 export const addForm = (status) => (dispatch) => {
   dispatch({
@@ -19,7 +20,7 @@ export const getPosts = () => async (dispatch) => {
     const res = await api.getPosts();
     dispatch({
       type: 'GET_POSTS',
-      postData: res.data,
+      postData: await res.data,
     });
   } catch (error) {
     console.log(error);
@@ -39,7 +40,7 @@ export const addPost = (postData) => async (dispatch) => {
   }
 };
 
-export const editPost = (postId, postData) => async (dispatch) => {
+export const editPost = (postId, postData, userId) => async (dispatch) => {
   try {
     const res = await api.editPost(postId, postData);
     dispatch({
@@ -47,19 +48,27 @@ export const editPost = (postId, postData) => async (dispatch) => {
       postData: res.data,
     });
     await getPosts()(dispatch);
+    await getUserPosts(userId)(dispatch);
   } catch (error) {
     console.log(error);
   }
 };
 
-export const deletePost = (postId) => async (dispatch) => {
+export const deletePost = (postId, userId) => async (dispatch) => {
   try {
     await api.deletePost(postId);
     dispatch({
       type: 'DELETE_POST',
     });
     await getPosts()(dispatch);
+    await getUserPosts(userId)(dispatch);
   } catch (error) {
     console.log(error);
   }
+};
+
+export const clearPostData = () => (dispatch) => {
+  dispatch({
+    type: 'CLEAR_POST_DATA',
+  });
 };

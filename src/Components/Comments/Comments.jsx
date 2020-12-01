@@ -49,7 +49,7 @@ function Comments({ post }) {
                   </IconButton>
                   <IconButton
                     onClick={() => {
-                      dispatch(deletePost(comment.id));
+                      dispatch(deletePost(comment.id, post.author.id));
                     }}
                   >
                     <DeleteIcon fontSize='small' />
@@ -77,7 +77,7 @@ function Comments({ post }) {
                     fontSize='small'
                     color='primary'
                     onClick={() => {
-                      dispatch(addComment(post.id, comment));
+                      dispatch(addComment(post.id, comment, post.author.id));
                       setComment({
                         message: '',
                       });

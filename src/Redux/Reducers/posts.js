@@ -1,17 +1,7 @@
 const defaultState = {
   openAddForm: false,
   openEditForm: false,
-  postData: [
-    {
-      author: '',
-      comments: [],
-      id: '',
-      message: '',
-      parent: {},
-      parentModel: '',
-      reactions: [],
-    },
-  ],
+  postData: [],
 };
 
 const posts = (state = defaultState, action) => {
@@ -41,6 +31,9 @@ const posts = (state = defaultState, action) => {
 
     case 'DELETE_POST':
       return { postData: action.postData };
+
+    case 'CLEAR_POST_DATA':
+      return { ...state, postData: [] };
 
     default:
       return state;

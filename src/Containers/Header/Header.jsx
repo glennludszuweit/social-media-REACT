@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../Redux/Actions/auth';
 import { useState } from 'react';
-import { addForm } from '../../Redux/Actions/posts';
+import { addForm, clearPostData } from '../../Redux/Actions/posts';
 import { Link } from 'react-router-dom';
 import { useStyles } from './styles';
 import Search from '../../Components/Search/Search';
@@ -62,6 +62,7 @@ function Header() {
       <MenuItem
         onClick={() => {
           dispatch(logout(auth.refreshToken));
+          dispatch(clearPostData());
           handleMenuClose();
         }}
       >
@@ -87,7 +88,7 @@ function Header() {
         onClick={() => dispatch(addForm(true))}
       >
         <p>
-          <Link to='/posts/add'>Add post</Link>
+          <Link to='#'>Add post</Link>
         </p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen} className={classes.iconMenu}>

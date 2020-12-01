@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getPosts } from './Redux/Actions/posts';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearPostData, getPosts } from './Redux/Actions/posts';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Header from './Containers/Header/Header';
 import Main from './Containers/Main/Main';

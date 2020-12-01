@@ -11,6 +11,7 @@ export const Store = createStore(
 );
 Store.subscribe(() => {
   localStorage.setItem('social-auth', JSON.stringify(Store.getState().auth));
+  localStorage.setItem('social-posts', JSON.stringify(Store.getState().posts));
 });
 
 (function () {

@@ -20,6 +20,7 @@ function Posts() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts.postData);
+  const authUser = useSelector((state) => state.auth.authUserData);
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(-1);
   const [view, setView] = useState(0);
@@ -84,18 +85,24 @@ function Posts() {
                     <IconButton color='secondary' onClick={() => {}}>
                       <ThumbDownIcon fontSize='small' />
                     </IconButton>
-                    <IconButton
-                      onClick={() => {
-                        setSelected(index);
-                        setOpen(true);
-                        dispatch(editForm(true));
-                      }}
-                    >
-                      <EditIcon fontSize='small' />
-                    </IconButton>
-                    <IconButton onClick={() => dispatch(deletePost(post.id))}>
-                      <DeleteIcon fontSize='small' />
-                    </IconButton>
+                    {post.author.id === authUser.id ? (
+                      <span>
+                        <IconButton
+                          onClick={() => {
+                            setSelected(index);
+                            setOpen(true);
+                            dispatch(editForm(true));
+                          }}
+                        >
+                          <EditIcon fontSize='small' />
+                        </IconButton>
+                        <IconButton
+                          onClick={() => dispatch(deletePost(post.id))}
+                        >
+                          <DeleteIcon fontSize='small' />
+                        </IconButton>
+                      </span>
+                    ) : null}
                   </div>
                 </Hidden>
               </div>
@@ -122,14 +129,25 @@ function Posts() {
                         <IconButton color='secondary' onClick={() => {}}>
                           <ThumbDownIcon fontSize='small' />
                         </IconButton>
-                        <IconButton onClick={() => {}}>
-                          <EditIcon fontSize='small' />
-                        </IconButton>
-                        <IconButton
-                          onClick={() => dispatch(deletePost(post.id))}
-                        >
-                          <DeleteIcon fontSize='small' />
-                        </IconButton>
+
+                        {post.author.id === authUser.id ? (
+                          <span>
+                            <IconButton
+                              onClick={() => {
+                                setSelected(index);
+                                setOpen(true);
+                                dispatch(editForm(true));
+                              }}
+                            >
+                              <EditIcon fontSize='small' />
+                            </IconButton>
+                            <IconButton
+                              onClick={() => dispatch(deletePost(post.id))}
+                            >
+                              <DeleteIcon fontSize='small' />
+                            </IconButton>
+                          </span>
+                        ) : null}
                       </div>
                     </Hidden>
                     <hr />

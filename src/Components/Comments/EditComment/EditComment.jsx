@@ -38,7 +38,9 @@ function EditComment({ post, comment }) {
                   color='primary'
                   onClick={() => {
                     dispatch(editForm(false));
-                    dispatch(editPost(comment.id, commentMessage));
+                    dispatch(
+                      editPost(comment.id, commentMessage, comment.author.id)
+                    );
                     setCommentMessage({
                       message: '',
                     });

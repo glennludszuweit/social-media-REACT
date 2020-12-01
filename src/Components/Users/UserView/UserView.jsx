@@ -99,7 +99,7 @@ function UserView() {
             <UserInfo user={authUser} />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <UserPosts posts={authUserPosts} />
+            <UserPosts posts={authUserPosts} authUser={authUser} />
           </TabPanel>
           <TabPanel value={value} index={2}>
             <UserFriends />
@@ -114,7 +114,7 @@ function UserView() {
             <UserInfo user={user} />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <UserPosts posts={userPosts} />
+            <UserPosts posts={userPosts} authUser={authUser} />
           </TabPanel>
           <TabPanel value={value} index={2}>
             <UserFriends />

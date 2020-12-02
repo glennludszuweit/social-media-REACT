@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, MemoryRouter, Route } from 'react-router-dom';
@@ -66,12 +67,20 @@ function Posts() {
         posts.map((post, index) => (
           <div className={classes.root} key={index}>
             <div className={classes.card}>
-              <Link to={`/users/${post.author}`}>
-                <img
-                  className={classes.cardMedia}
-                  alt='Remy Sharp'
-                  src='https://images.unsplash.com/photo-1536706936563-c9e47fc563df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
-                />
+              <Link to={`/users/${post.author.id}`}>
+                {post.author.avatar ? (
+                  <img
+                    className={classes.cardMedia}
+                    src={post.author.avatar}
+                    alt={post.author.name}
+                  />
+                ) : (
+                  <img
+                    className={classes.cardMedia}
+                    src='https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1445&q=80'
+                    alt={post.author.name}
+                  />
+                )}
               </Link>
               <div className={classes.cardDetails}>
                 <CardContent>
@@ -88,7 +97,9 @@ function Posts() {
                       {post.message.slice(0, 20)}
                     </Typography>
                   </Link>
-                  <small className={classes.date}>16/11/2020</small>
+                  <small className={classes.date}>
+                    {moment(post.updatedAt).calendar()}
+                  </small>
                 </CardContent>
               </div>
               <Hidden xsDown>

@@ -2,9 +2,16 @@ import Posts from '../Posts/Posts';
 import UserFriends from '../Users/UserFriends/UserFriends';
 import { Grid, Hidden } from '@material-ui/core';
 import { useStyles } from './styles.js';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getPosts } from '../../Redux/Actions/posts';
 
 function Home() {
-  const classes = useStyles();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, []);
 
   return (
     <Grid container>

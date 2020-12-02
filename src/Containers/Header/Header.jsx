@@ -85,14 +85,29 @@ function Header() {
     >
       <MenuItem
         className={classes.iconMenu}
-        onClick={() => dispatch(addForm(true))}
+        onClick={() => {
+          dispatch(addForm(true));
+          handleMenuClose();
+        }}
       >
         <p>
           <Link to='#'>Add post</Link>
         </p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen} className={classes.iconMenu}>
-        <p>Profile</p>
+      <MenuItem onClick={handleMenuClose} className={classes.iconMenu}>
+        <p>
+          <Link to={`/profile/${auth.authUserData.id}`}>My account</Link>
+        </p>
+      </MenuItem>
+      <MenuItem
+        className={classes.iconMenu}
+        onClick={() => {
+          dispatch(logout(auth.refreshToken));
+          dispatch(clearPostData());
+          handleMenuClose();
+        }}
+      >
+        <p>Logout</p>
       </MenuItem>
     </Menu>
   ) : (

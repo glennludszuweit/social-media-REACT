@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addComment } from '../../Redux/Actions/comments';
@@ -10,6 +11,8 @@ import {
   TextField,
   Paper,
   InputAdornment,
+  Avatar,
+  Chip,
 } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import SendIcon from '@material-ui/icons/Send';
@@ -35,7 +38,17 @@ function Comments({ post }) {
             <EditComment post={post} comment={comment} />
           ) : (
             <Paper className={classes.commentsLists} elevation={0}>
-              <small>{comment.author.name}</small>
+              <div style={{ marginBottom: 10 }}>
+                <Chip
+                  size='small'
+                  color='secondary'
+                  label={comment.author.name}
+                />
+                <span style={{ fontSize: 12, marginLeft: 5 }}>
+                  {moment(post.updatedAt).calendar()}
+                </span>
+              </div>
+
               <Typography>{comment.message}</Typography>
               {comment.author.id === authID ? (
                 <div align='right'>

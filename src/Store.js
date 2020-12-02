@@ -11,14 +11,4 @@ export const Store = createStore(
 );
 Store.subscribe(() => {
   localStorage.setItem('social-auth', JSON.stringify(Store.getState().auth));
-  localStorage.setItem('social-posts', JSON.stringify(Store.getState().posts));
 });
-
-(function () {
-  const token = Store.getState().auth.token;
-  if (token) {
-    Axios.defaults.headers.common['Authorization'] = token;
-  } else {
-    delete Axios.defaults.headers.common['Authorization'];
-  }
-})();

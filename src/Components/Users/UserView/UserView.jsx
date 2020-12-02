@@ -51,8 +51,7 @@ function UserView() {
   const { id } = useParams();
   const user = useSelector((state) => state.users.userData);
   const userPosts = useSelector((state) => state.users.userPosts);
-  const authUser = useSelector((state) => state.auth.authUserData);
-  const authUserPosts = useSelector((state) => state.posts.postData);
+  const authUser = useSelector((state) => state.auth);
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -66,13 +65,7 @@ function UserView() {
   return (
     <Paper elevation={0} className={classes.root}>
       <div align='center'>
-        {authUser.avatar ? (
-          <img
-            className={classes.userImage}
-            src={authUser.avatar}
-            alt={authUser.name}
-          />
-        ) : user.avatar ? (
+        {user.avatar ? (
           <img
             className={classes.userImage}
             src={user.avatar}
@@ -93,37 +86,20 @@ function UserView() {
         <Tab label='Groups' {...a11yProps(3)} />
       </Tabs>
 
-      {id === authUser.id ? (
-        <div>
-          <TabPanel value={value} index={0}>
-            <UserInfo user={authUser} />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <UserPosts posts={authUserPosts} authUser={authUser} />
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            <UserFriends />
-          </TabPanel>
-          <TabPanel value={value} index={3}>
-            <UserGroups />
-          </TabPanel>
-        </div>
-      ) : (
-        <div>
-          <TabPanel value={value} index={0}>
-            <UserInfo user={user} />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <UserPosts posts={userPosts} authUser={authUser} />
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            <UserFriends />
-          </TabPanel>
-          <TabPanel value={value} index={3}>
-            <UserGroups />
-          </TabPanel>
-        </div>
-      )}
+      <div>
+        <TabPanel value={value} index={0}>
+          <UserInfo user={user} authUser={authUser} />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <UserPosts posts={userPosts} authUser={authUser} user={user} />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <UserFriends />
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <UserGroups />
+        </TabPanel>
+      </div>
     </Paper>
   );
 }

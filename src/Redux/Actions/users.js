@@ -35,3 +35,14 @@ export const searchUser = (match, type, field) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const deleteUser = (userId, userToken) => async (dispatch) => {
+  try {
+    await api.deleteUser(userId, userToken);
+    dispatch({
+      type: 'DELETE_USER',
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -1,6 +1,7 @@
+import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { deletePost, editForm } from '../../../Redux/Actions/posts';
 import { useStyles } from './styles';
 import PostEdit from '../../Posts/PostEdit/PostEdit';
@@ -15,7 +16,7 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import CloseIcon from '@material-ui/icons/Close';
 
-function UserPosts({ posts, authUser }) {
+function UserPosts({ posts, authUser, user }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -28,16 +29,24 @@ function UserPosts({ posts, authUser }) {
     }, 3000);
   }, []);
 
-  return viewPosts ? (
+  return viewPosts && posts ? (
     posts.slice(0, 10).map((post, index) => (
       <div className={classes.root} key={index}>
         <div className={classes.card}>
           <Link to={`/users/${post.author}`}>
-            <img
-              className={classes.cardMedia}
-              alt='Remy Sharp'
-              src='https://images.unsplash.com/photo-1536706936563-c9e47fc563df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
-            />
+            {user.avatar ? (
+              <img
+                className={classes.cardMedia}
+                src={user.avatar}
+                alt={user.name}
+              />
+            ) : (
+              <img
+                className={classes.cardMedia}
+                src='https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1445&q=80'
+                alt={user.name}
+              />
+            )}
           </Link>
           <div className={classes.cardDetails}>
             <CardContent>
@@ -54,7 +63,9 @@ function UserPosts({ posts, authUser }) {
                   {post.message.slice(0, 20)}
                 </Typography>
               </Link>
-              <small className={classes.date}>16/11/2020</small>
+              <small className={classes.date}>
+                {moment(post.updatedAt).calendar()}
+              </small>
             </CardContent>
           </div>
           <Hidden xsDown>
@@ -65,7 +76,7 @@ function UserPosts({ posts, authUser }) {
               <IconButton color='secondary' onClick={() => {}}>
                 <ThumbDownIcon fontSize='small' />
               </IconButton>
-              {post.author.id === authUser.id ? (
+              {post.author.id === authUser.authUserData.id ? (
                 <span>
                   <IconButton
                     onClick={() => {
@@ -76,7 +87,11 @@ function UserPosts({ posts, authUser }) {
                   >
                     <EditIcon fontSize='small' />
                   </IconButton>
-                  <IconButton onClick={() => dispatch(deletePost(post.id))}>
+                  <IconButton
+                    onClick={() =>
+                      dispatch(deletePost(post.id, post.author.id))
+                    }
+                  >
                     <DeleteIcon fontSize='small' />
                   </IconButton>
                 </span>
@@ -107,7 +122,7 @@ function UserPosts({ posts, authUser }) {
                   <IconButton color='secondary' onClick={() => {}}>
                     <ThumbDownIcon fontSize='small' />
                   </IconButton>
-                  {post.author.id === authUser.id ? (
+                  {post.author.id === authUser.authUserData.id ? (
                     <span>
                       <IconButton
                         onClick={() => {
@@ -118,7 +133,11 @@ function UserPosts({ posts, authUser }) {
                       >
                         <EditIcon fontSize='small' />
                       </IconButton>
-                      <IconButton onClick={() => dispatch(deletePost(post.id))}>
+                      <IconButton
+                        onClick={() =>
+                          dispatch(deletePost(post.id, post.author.id))
+                        }
+                      >
                         <DeleteIcon fontSize='small' />
                       </IconButton>
                     </span>

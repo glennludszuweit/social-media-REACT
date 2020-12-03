@@ -36,6 +36,20 @@ export const searchUser = (match, type, field) => async (dispatch) => {
   }
 };
 
+export const updateUser = (userId, updatedUserData) => async (dispatch) => {
+  try {
+    const res = await api.updateUser(updatedUserData);
+    console.log(res);
+    dispatch({
+      type: 'UPDATE_USER',
+      userData: res.data,
+    });
+    await getUser(userId)(dispatch);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const deleteUser = (userId, userToken) => async (dispatch) => {
   try {
     await api.deleteUser(userId, userToken);

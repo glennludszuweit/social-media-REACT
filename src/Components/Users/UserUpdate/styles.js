@@ -12,6 +12,14 @@ export const useStyles = makeStyles((theme) => ({
     maxWidth: 500,
     margin: '20px 0',
   },
+  userImgContainer: {
+    position: 'relative',
+  },
+  uploadImgBtn: {
+    position: 'absolute',
+    bottom: -10,
+    right: 50,
+  },
   userImage: {
     width: 200,
     height: 200,
@@ -25,9 +33,9 @@ export const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
-  userButtons: {
+  adminButtons: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     margin: '10px 0',
   },
 }));

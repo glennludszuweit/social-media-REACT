@@ -15,12 +15,8 @@ export const getUserPosts = (userId) =>
   axios.get(`${URL}/user/posts/${userId}`);
 export const searchUser = (match, type, field) =>
   axios.post(`${URL}/search`, { match, type, field });
-export const updateUser = (userAvatar, userName, userEmail) =>
-  axios.patch(`${URL}/user`, {
-    avatar: userAvatar,
-    name: userName,
-    email: userEmail,
-  });
+export const updateUser = (updatedUserData) =>
+  axios.patch(`${URL}/user`, updatedUserData);
 export const deleteUser = (userId, userToken) =>
   axios.delete(`${URL}/user/${userId}`, { token: userToken });
 

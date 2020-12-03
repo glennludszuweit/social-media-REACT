@@ -17,6 +17,9 @@ const users = (state = defaultState, action) => {
     case 'SEARCH_USER':
       return { ...state, searchedUser: action.searchedUser };
 
+    case 'UPDATE_USER':
+      return { ...state, userData: action.userData };
+
     case 'DELETE_USER':
       delete Axios.defaults.headers.common['Authorization'];
       localStorage.removeItem('social-auth');

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateUser } from '../../../Redux/Actions/users';
+import { logout } from '../../../Redux/Actions/auth';
+import { updateUser, deleteUser } from '../../../Redux/Actions/users';
 import { useStyles } from './styles';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
@@ -17,7 +18,7 @@ import {
 } from '@material-ui/core';
 import { PhotoCamera } from '@material-ui/icons';
 
-function UserUpdate({ user }) {
+function UserUpdate({ user, authUser }) {
   const dispatch = useDispatch();
   const classes = useStyles();
   const [updateUserData, setUpdateUserData] = useState({
@@ -133,6 +134,10 @@ function UserUpdate({ user }) {
           color='secondary'
           className={classes.button}
           startIcon={<DeleteIcon />}
+          onClick={() => {
+            dispatch(deleteUser(user.id, authUser.token));
+            dispatch(logout(authUser.refreshToken));
+          }}
         >
           Delete Account
         </Button>

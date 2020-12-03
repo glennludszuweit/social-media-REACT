@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-import { deleteUser } from '../../../Redux/Actions/users';
 import { useStyles } from './styles';
 import ChatIcon from '@material-ui/icons/Chat';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
@@ -7,11 +6,10 @@ import { Button, Grid } from '@material-ui/core';
 import UserUpdate from '../UserUpdate/UserUpdate';
 
 function UserInfo({ user, authUser }) {
-  const dispatch = useDispatch();
   const classes = useStyles();
 
   return user.id === authUser.authUserData.id ? (
-    <UserUpdate user={user} />
+    <UserUpdate user={user} authUser={authUser} />
   ) : (
     <div>
       <Grid container className={classes.userInfo}>

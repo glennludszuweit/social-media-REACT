@@ -64,15 +64,6 @@ function UserView() {
 
   return (
     <Paper elevation={0} className={classes.root}>
-      <div align='center'>
-        {user.avatar ? (
-          <img
-            className={classes.userImage}
-            src={user.avatar}
-            alt={user.name}
-          />
-        ) : null}
-      </div>
       <Tabs
         value={value}
         onChange={handleChange}

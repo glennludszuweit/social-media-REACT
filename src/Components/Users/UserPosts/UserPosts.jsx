@@ -21,15 +21,8 @@ function UserPosts({ posts, authUser, user }) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(-1);
-  const [viewPosts, setViewPosts] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setViewPosts(true);
-    }, 3000);
-  }, []);
-
-  return viewPosts && posts ? (
+  return posts ? (
     posts.slice(0, 10).map((post, index) => (
       <div className={classes.root} key={index}>
         <div className={classes.card}>

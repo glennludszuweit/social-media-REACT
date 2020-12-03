@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../Redux/Actions/auth';
 import { updateUser, deleteUser } from '../../../Redux/Actions/users';
@@ -22,9 +22,22 @@ function UserUpdate({ user, authUser }) {
   const dispatch = useDispatch();
   const classes = useStyles();
   const [updateUserData, setUpdateUserData] = useState({
+    avatar: user.avatar
+      ? user.avatar
+      : 'https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1445&q=80',
     name: user.name,
     email: user.email,
   });
+
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+  console.log(updateUserData);
 
   return (
     <div>
@@ -34,17 +47,23 @@ function UserUpdate({ user, authUser }) {
             <div className={classes.userImgContainer}>
               <img
                 className={classes.userImage}
-                src={user.avatar}
+                src={updateUserData.avatar}
                 alt={user.name}
               />
               <div className={classes.uploadImgBtn}>
                 <input
                   accept='image/*'
                   className={classes.input}
-                  id='icon-button-file'
+                  id='image'
                   type='file'
+                  onChange={async (e) =>
+                    setUpdateUserData({
+                      ...updateUserData,
+                      avatar: await toBase64(e.target.files[0]),
+                    })
+                  }
                 />
-                <label htmlFor='icon-button-file'>
+                <label htmlFor='image'>
                   <IconButton
                     color='primary'
                     aria-label='upload picture'
@@ -59,17 +78,23 @@ function UserUpdate({ user, authUser }) {
             <div className={classes.userImgContainer}>
               <img
                 className={classes.userImage}
-                src='https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1445&q=80'
+                src={updateUserData.avatar}
                 alt={user.name}
               />
               <div className={classes.uploadImgBtn}>
                 <input
                   accept='image/*'
                   className={classes.input}
-                  id='icon-button-file'
+                  id='image'
                   type='file'
+                  onChange={async (e) =>
+                    setUpdateUserData({
+                      ...updateUserData,
+                      avatar: await toBase64(e.target.files[0]),
+                    })
+                  }
                 />
-                <label htmlFor='icon-button-file'>
+                <label htmlFor='image'>
                   <IconButton
                     color='primary'
                     aria-label='upload picture'

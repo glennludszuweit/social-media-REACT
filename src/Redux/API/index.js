@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-const URL = 'https://sz.hktr.de/api';
+const URL = "https://sz.hktr.de/api";
 
 //AUTH
 export const login = (userData) => axios.post(`${URL}/auth/login`, userData);
@@ -19,6 +19,14 @@ export const updateUser = (updatedUserData) =>
   axios.patch(`${URL}/user`, updatedUserData);
 export const deleteUser = (userId, userToken) =>
   axios.delete(`${URL}/user/${userId}`, { token: userToken });
+
+//FRIENDS
+export const getFriends = () => axios.get(`${URL}/friends`);
+export const pendingFriends = () => axios.get(`${URL}/friends/pending`);
+export const addFriend = (userId) =>
+  axios.post(`${URL}/friends/approve/`, userId);
+export const unFriend = (userId) =>
+  axios.post(`${URL}/friends/reject/`, userId);
 
 //POSTS
 export const getPosts = () => axios.get(`${URL}/post`);

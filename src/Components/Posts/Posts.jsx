@@ -32,13 +32,6 @@ function Posts() {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(-1);
   const [view, setView] = useState(0);
-  // const [viewPosts, setViewPosts] = useState(false);
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setViewPosts(true);
-  //   }, 3000);
-  // }, []);
 
   const handleChange = (event, newValue) => {
     setView(newValue);

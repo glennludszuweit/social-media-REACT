@@ -60,3 +60,27 @@ export const deleteUser = (userId, userToken) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const addFriendUser= (userId) => async (dispatch) => {
+  try {
+    const res = await api.addFriendUser(userId);
+    dispatch({
+      type: 'ADD_FRIEND_USER',
+      friendData: res.data
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const unFriendUser = (userId) => async (dispatch) => {
+  try {
+    const res = await api.unFriendUser(userId);
+    dispatch({
+      type: 'UN_FRIEND_USER',
+      friendData: res.data
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

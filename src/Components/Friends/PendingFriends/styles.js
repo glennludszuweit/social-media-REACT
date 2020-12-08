@@ -15,32 +15,15 @@ export const useStyles = makeStyles((theme) => ({
     },
     boxShadow: '0 4px 3px -2px rgba(1, 1, 1, 0.1)',
   },
-  tabs: {
-    fontWeight: 600,
-  },
   card: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between'
   },
-  date: { color: '#777777' },
-  cardDetails: {
-    flex: 1,
-  },
-  cardMedia: {
-    width: 65,
-    height: 65,
-    objectFit: 'cover',
-    margin: '10px 0 10px 15px',
+  cardImage: {
+    margin: '10px',
   },
   postIcons: {
     margin: 10,
-  },
-  icon: {
-    margin: '0 10px',
-  },
-  paginateContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: '0 0 20px',
   },
 }));

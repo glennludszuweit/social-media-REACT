@@ -1,65 +1,80 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import ApprovedFriends from './ApprovedFriends/ApprovedFriends'
+import PendingFriends from './PendingFriends/PendingFriends'
 import { useStyles } from './styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableRow from '@material-ui/core/TableRow';
-import { Avatar, IconButton, TableHead } from '@material-ui/core';
-import TextsmsIcon from '@material-ui/icons/Textsms';
-import PeopleIcon from '@material-ui/icons/People';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import PropTypes from 'prop-types';
+import { Box, Typography } from '@material-ui/core';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 
-function Friends() {
-  const classes = useStyles();
-
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
   return (
-    <TableContainer className={classes.table}>
-      <Table aria-label='simple table'>
-        <TableHead className={classes.tableHead}>
-          <TableRow>
-            <TableCell></TableCell>
-            <TableCell align='center'>
-              <PeopleIcon className={classes.tableHeadIcon} />
-            </TableCell>
-            <TableCell></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody className={classes.tableRow}>
-          <TableRow>
-            <TableCell align='left'>
-              <Link to='/users/1'>
-                <Avatar alt='Remy Sharp' src='' />
-              </Link>
-            </TableCell>
-            <TableCell>
-              <Link to='/users/1'>Friend Name</Link>
-            </TableCell>
-            <TableCell align='right'>
-              <IconButton>
-                <TextsmsIcon />
-              </IconButton>
-            </TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell align='left'>
-              <Link to='/users/1'>
-                <Avatar alt='Remy Sharp' src='' />
-              </Link>
-            </TableCell>
-            <TableCell>
-              <Link to='/users/1'>Friend Name</Link>
-            </TableCell>
-            <TableCell align='right'>
-              <IconButton>
-                <TextsmsIcon />
-              </IconButton>
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div
+      role='tabpanel'
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box style={{ maxWidth: 600, margin: '0 auto', padding: '20px 5px' }}>
+          <Typography component={'span'}>{children}</Typography>
+        </Box>
+      )}
+    </div>
   );
 }
 
-export default Friends;
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+function UserView() {
+  const classes = useStyles();
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Paper elevation={0} className={classes.root}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor='primary'
+        textColor='primary'
+        variant='fullWidth'
+        centered
+      >
+        <Tab icon={<SupervisorAccountIcon />} {...a11yProps(0)} />
+        <Tab icon={<GroupAddIcon />} {...a11yProps(1)} />
+      </Tabs>
+
+      <div className={classes.body}>
+        <TabPanel value={value} index={0}>
+          <ApprovedFriends />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <PendingFriends />
+        </TabPanel>
+       
+      </div>
+    </Paper>
+  );
+}
+
+export default UserView;

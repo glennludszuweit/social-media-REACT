@@ -8,10 +8,10 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
 import { Box, Typography } from '@material-ui/core';
-import UserFriends from '../UserFriends/UserFriends';
 import UserPosts from '../UserPosts/UserPosts';
 import UserGroups from '../UserGroups/UserGroups';
 import UserInfo from '../UserInfo/UserInfo';
+import Friends from '../../Friends/Friends';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -85,7 +85,7 @@ function UserView() {
           <UserPosts posts={userPosts} authUser={authUser} user={user} />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <UserFriends />
+          <Friends />
         </TabPanel>
         <TabPanel value={value} index={3}>
           <UserGroups />

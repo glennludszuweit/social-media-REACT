@@ -4,7 +4,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { Button, Grid } from '@material-ui/core';
 import UserUpdate from '../UserUpdate/UserUpdate';
-import { addFriend } from '../../../Redux/Actions/friends';
+import { addFriendUser } from '../../../Redux/Actions/users';
 
 function UserInfo({ user, authUser }) {
   const classes = useStyles();
@@ -41,7 +41,7 @@ function UserInfo({ user, authUser }) {
           color='primary'
           className={classes.button}
           startIcon={<PersonAddIcon />}
-          onClick={() => dispatch(addFriend(user.id))}
+          onClick={() => dispatch(addFriendUser(user.id))}
         >
           Add Friend
         </Button>

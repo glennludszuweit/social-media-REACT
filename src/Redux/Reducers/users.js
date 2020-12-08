@@ -3,6 +3,7 @@ import Axios from "axios";
 const defaultState = {
   userData: [],
   userPosts: [],
+  userFriends: [],
   searchedUser: [],
 };
 
@@ -30,6 +31,9 @@ const users = (state = defaultState, action) => {
 
     case "UN_FRIEND_USER":
       return { ...state };
+
+    case "GET_USER_FRIENDS":
+      return { ...state, userFriends: action.userFriends };
 
     default:
       return state;

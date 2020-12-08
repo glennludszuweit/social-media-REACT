@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ApprovedFriends from "./ApprovedFriends/ApprovedFriends";
 import PendingFriends from "./PendingFriends/PendingFriends";
 import { useStyles } from "./styles";
@@ -9,6 +9,8 @@ import PropTypes from "prop-types";
 import { Box, Typography } from "@material-ui/core";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserFriends } from "../../Redux/Actions/users";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -44,7 +46,13 @@ function a11yProps(index) {
 
 function Friends({ user }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const friendsData = useSelector((state) => state.users.userFriends);
   const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    dispatch(getUserFriends(user.friends));
+  }, [dispatch]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -66,10 +74,10 @@ function Friends({ user }) {
 
       <div className={classes.body}>
         <TabPanel value={value} index={0}>
-          <ApprovedFriends friends={user.friends} />
+          <ApprovedFriends friends={friendsData} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <PendingFriends friendRequests={user.friendRequests} />
+          <PendingFriends friendRequests={friendsData.friendRequests} />
         </TabPanel>
       </div>
     </Paper>

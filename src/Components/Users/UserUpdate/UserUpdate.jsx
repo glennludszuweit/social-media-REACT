@@ -1,12 +1,12 @@
-import {  useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { logout } from '../../../Redux/Actions/auth';
-import { updateUser, deleteUser } from '../../../Redux/Actions/users';
-import { useStyles } from './styles';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
-import DeleteIcon from '@material-ui/icons/Delete';
-import SaveIcon from '@material-ui/icons/Save';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../Redux/Actions/auth";
+import { updateUser, deleteUser } from "../../../Redux/Actions/users";
+import { useStyles } from "./styles";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
+import DeleteIcon from "@material-ui/icons/Delete";
+import SaveIcon from "@material-ui/icons/Save";
 import {
   Button,
   FormControl,
@@ -15,8 +15,8 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
-} from '@material-ui/core';
-import { PhotoCamera } from '@material-ui/icons';
+} from "@material-ui/core";
+import { PhotoCamera } from "@material-ui/icons";
 
 function UserUpdate({ user, authUser }) {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ function UserUpdate({ user, authUser }) {
   const [updateUserData, setUpdateUserData] = useState({
     avatar: user.avatar
       ? user.avatar
-      : 'https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1445&q=80',
+      : "https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1445&q=80",
     name: user.name,
     email: user.email,
   });
@@ -36,8 +36,6 @@ function UserUpdate({ user, authUser }) {
       reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
     });
-
-  console.log(updateUserData);
 
   return (
     <div>
@@ -52,10 +50,10 @@ function UserUpdate({ user, authUser }) {
               />
               <div className={classes.uploadImgBtn}>
                 <input
-                  accept='image/*'
+                  accept="image/*"
                   className={classes.input}
-                  id='image'
-                  type='file'
+                  id="image"
+                  type="file"
                   onChange={async (e) =>
                     setUpdateUserData({
                       ...updateUserData,
@@ -63,13 +61,13 @@ function UserUpdate({ user, authUser }) {
                     })
                   }
                 />
-                <label htmlFor='image'>
+                <label htmlFor="image">
                   <IconButton
-                    color='primary'
-                    aria-label='upload picture'
-                    component='span'
+                    color="primary"
+                    aria-label="upload picture"
+                    component="span"
                   >
-                    <PhotoCamera fontSize='large' color='secondary' />
+                    <PhotoCamera fontSize="large" color="secondary" />
                   </IconButton>
                 </label>
               </div>
@@ -83,10 +81,10 @@ function UserUpdate({ user, authUser }) {
               />
               <div className={classes.uploadImgBtn}>
                 <input
-                  accept='image/*'
+                  accept="image/*"
                   className={classes.input}
-                  id='image'
-                  type='file'
+                  id="image"
+                  type="file"
                   onChange={async (e) =>
                     setUpdateUserData({
                       ...updateUserData,
@@ -94,13 +92,13 @@ function UserUpdate({ user, authUser }) {
                     })
                   }
                 />
-                <label htmlFor='image'>
+                <label htmlFor="image">
                   <IconButton
-                    color='primary'
-                    aria-label='upload picture'
-                    component='span'
+                    color="primary"
+                    aria-label="upload picture"
+                    component="span"
                   >
-                    <PhotoCamera fontSize='large' color='secondary' />
+                    <PhotoCamera fontSize="large" color="secondary" />
                   </IconButton>
                 </label>
               </div>
@@ -111,18 +109,18 @@ function UserUpdate({ user, authUser }) {
           <FormControl
             fullWidth
             className={classes.textField}
-            variant='outlined'
+            variant="outlined"
           >
-            <InputLabel htmlFor='name'>Name</InputLabel>
+            <InputLabel htmlFor="name">Name</InputLabel>
             <OutlinedInput
               fullWidth
-              id='name'
+              id="name"
               value={updateUserData.name}
               onChange={(e) =>
                 setUpdateUserData({ ...updateUserData, name: e.target.value })
               }
               startAdornment={
-                <InputAdornment position='start'>
+                <InputAdornment position="start">
                   <AccountBoxIcon className={classes.textFieldIcon} />
                 </InputAdornment>
               }
@@ -132,19 +130,19 @@ function UserUpdate({ user, authUser }) {
           <FormControl
             fullWidth
             className={classes.textField}
-            variant='outlined'
+            variant="outlined"
           >
-            <InputLabel htmlFor='email'>Email</InputLabel>
+            <InputLabel htmlFor="email">Email</InputLabel>
             <OutlinedInput
               fullWidth
-              type='emial'
-              id='email'
+              type="emial"
+              id="email"
               value={updateUserData.email}
               onChange={(e) =>
                 setUpdateUserData({ ...updateUserData, email: e.target.value })
               }
               startAdornment={
-                <InputAdornment position='start'>
+                <InputAdornment position="start">
                   <AlternateEmailIcon className={classes.textFieldIcon} />
                 </InputAdornment>
               }
@@ -155,8 +153,8 @@ function UserUpdate({ user, authUser }) {
       </Grid>
       <div className={classes.adminButtons}>
         <Button
-          variant='contained'
-          color='secondary'
+          variant="contained"
+          color="secondary"
           className={classes.button}
           startIcon={<DeleteIcon />}
           onClick={() => {
@@ -167,8 +165,8 @@ function UserUpdate({ user, authUser }) {
           Delete Account
         </Button>
         <Button
-          variant='contained'
-          color='primary'
+          variant="contained"
+          color="primary"
           className={classes.button}
           endIcon={<SaveIcon />}
           onClick={() => dispatch(updateUser(user.id, updateUserData))}

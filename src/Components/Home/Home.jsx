@@ -5,17 +5,22 @@ import { useStyles } from "./styles.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getPosts } from "../../Redux/Actions/posts";
-import { getUser } from "../../Redux/Actions/users";
+import { getUser, getUserFriends } from "../../Redux/Actions/users";
 
 function Home() {
   const dispatch = useDispatch();
   const authUser = useSelector((state) => state.auth);
   const user = useSelector((state) => state.users.userData);
+  const friendsData = useSelector((state) => state.users.userFriends);
 
   useEffect(() => {
     dispatch(getPosts());
     dispatch(getUser(authUser.authUserData.id));
+    dispatch(getUserFriends(user.friends));
   }, []);
+
+  console.log(user.friends);
+  console.log(friendsData);
 
   return (
     <Grid container>

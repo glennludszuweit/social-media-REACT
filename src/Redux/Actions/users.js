@@ -1,10 +1,10 @@
-import * as api from '../API';
+import * as api from "../API";
 
 export const getUser = (userId) => async (dispatch) => {
   try {
     const res = await api.getUser(userId);
     dispatch({
-      type: 'GET_USER',
+      type: "GET_USER",
       userData: res.data,
     });
   } catch (error) {
@@ -16,7 +16,7 @@ export const getUserPosts = (userId) => async (dispatch) => {
   try {
     const res = await api.getUserPosts(userId);
     dispatch({
-      type: 'GET_USER_POSTS',
+      type: "GET_USER_POSTS",
       userPosts: res.data,
     });
   } catch (error) {
@@ -28,7 +28,7 @@ export const searchUser = (match, type, field) => async (dispatch) => {
   try {
     const res = await api.searchUser(match, type, field);
     dispatch({
-      type: 'SEARCH_USER',
+      type: "SEARCH_USER",
       searchedUser: res.data,
     });
   } catch (error) {
@@ -41,7 +41,7 @@ export const updateUser = (userId, updatedUserData) => async (dispatch) => {
     const res = await api.updateUser(updatedUserData);
     console.log(res);
     dispatch({
-      type: 'UPDATE_USER',
+      type: "UPDATE_USER",
       userData: res.data,
     });
     await getUser(userId)(dispatch);
@@ -54,19 +54,19 @@ export const deleteUser = (userId, userToken) => async (dispatch) => {
   try {
     await api.deleteUser(userId, userToken);
     dispatch({
-      type: 'DELETE_USER',
+      type: "DELETE_USER",
     });
   } catch (error) {
     console.log(error);
   }
 };
 
-export const addFriendUser= (userId) => async (dispatch) => {
+export const addFriendUser = (userId) => async (dispatch) => {
   try {
     const res = await api.addFriendUser(userId);
     dispatch({
-      type: 'ADD_FRIEND_USER',
-      friendData: res.data
+      type: "ADD_FRIEND_USER",
+      friendData: res.data,
     });
   } catch (error) {
     console.log(error);
@@ -77,8 +77,21 @@ export const unFriendUser = (userId) => async (dispatch) => {
   try {
     const res = await api.unFriendUser(userId);
     dispatch({
-      type: 'UN_FRIEND_USER',
-      friendData: res.data
+      type: "UN_FRIEND_USER",
+      friendData: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getUserFriends = (friendsId) => async (dispatch) => {
+  try {
+    const friends = await Promise.all(friendsId.map((id) => api.getUser(id)));
+
+    dispatch({
+      type: "GET_USER_FRIENDS",
+      userFriends: friends.map((friend) => friend.data),
     });
   } catch (error) {
     console.log(error);

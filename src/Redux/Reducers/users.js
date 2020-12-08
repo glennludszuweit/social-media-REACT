@@ -27,10 +27,10 @@ const users = (state = defaultState, action) => {
       return defaultState;
 
     case "ADD_FRIEND_USER":
-      return { ...state };
+      return { ...state, userData: action.userData };
 
     case "UN_FRIEND_USER":
-      return { ...state };
+      return { ...state, userData: action.userData };
 
     case "GET_USER_FRIENDS":
       return { ...state, userFriends: action.userFriends };

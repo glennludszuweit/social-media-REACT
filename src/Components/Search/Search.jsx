@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { searchUser } from '../../Redux/Actions/users';
-import { useStyles } from './styles';
-import { Autocomplete } from '@material-ui/lab';
-import { TextField } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { searchUser } from "../../Redux/Actions/users";
+import { useStyles } from "./styles";
+import { Autocomplete } from "@material-ui/lab";
+import { TextField } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 function Search() {
   const classes = useStyles();
@@ -14,7 +14,7 @@ function Search() {
   const [value, setValue] = useState(null);
 
   useEffect(() => {
-    dispatch(searchUser(value, 'User', 'name'));
+    dispatch(searchUser(value, "User", "name"));
   }, [value, dispatch]);
 
   return (
@@ -27,17 +27,17 @@ function Search() {
       onInputChange={(e) => setValue(e.target.value)}
       onChange={(e, v, r) => {
         e.preventDefault();
-        if (r === 'select-option') history.push(`/users/${v.id}`);
+        if (r === "select-option") history.push(`/users/${v.id}`);
       }}
       renderInput={(params) => (
         <TextField
           className={classes.input}
           {...params}
-          size='small'
-          variant='outlined'
-          placeholder='Search user by name'
-          margin='normal'
-          InputProps={{ ...params.InputProps, type: 'search' }}
+          size="small"
+          variant="outlined"
+          placeholder="Search user by name"
+          margin="normal"
+          InputProps={{ ...params.InputProps, type: "search" }}
         />
       )}
     />

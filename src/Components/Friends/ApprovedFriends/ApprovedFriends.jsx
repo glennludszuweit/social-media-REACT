@@ -5,8 +5,6 @@ import { Avatar, CardContent, IconButton } from "@material-ui/core";
 function ApprovedFriends({ friends }) {
   const classes = useStyles();
 
-  console.log(friends);
-
   return friends.map((friend, index) => (
     <div className={classes.root} key={index}>
       <div className={classes.card}>

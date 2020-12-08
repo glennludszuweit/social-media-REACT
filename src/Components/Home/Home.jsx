@@ -11,16 +11,14 @@ function Home() {
   const dispatch = useDispatch();
   const authUser = useSelector((state) => state.auth);
   const user = useSelector((state) => state.users.userData);
-  const friendsData = useSelector((state) => state.users.userFriends);
+
+  const authFriendsId = authUser.authUserData.friends.map((x) => x.id);
 
   useEffect(() => {
     dispatch(getPosts());
     dispatch(getUser(authUser.authUserData.id));
-    dispatch(getUserFriends(user.friends));
+    dispatch(getUserFriends(authFriendsId));
   }, []);
-
-  console.log(user.friends);
-  console.log(friendsData);
 
   return (
     <Grid container>

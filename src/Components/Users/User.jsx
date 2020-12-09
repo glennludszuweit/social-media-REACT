@@ -74,7 +74,6 @@ function UserView() {
         <Tab label="Info" {...a11yProps(0)} />
         <Tab label="Posts" {...a11yProps(1)} />
         <Tab label="Friends" {...a11yProps(2)} />
-        <Tab label="Groups" {...a11yProps(3)} />
       </Tabs>
 
       <div>
@@ -85,10 +84,7 @@ function UserView() {
           <UserPosts posts={userPosts} authUser={authUser} user={user} />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <Friends user={user} />
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          <UserGroups friendRequests={user.friendRequests} />
+          <Friends user={user} authUser={authUser} />
         </TabPanel>
       </div>
     </Paper>

@@ -1,7 +1,6 @@
 import Posts from "../Posts/Posts";
 import Friends from "../Friends/Friends";
 import { Grid, Hidden } from "@material-ui/core";
-import { useStyles } from "./styles.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getPosts } from "../../Redux/Actions/posts";
@@ -27,7 +26,7 @@ function Home() {
       </Grid>
       <Hidden smDown>
         <Grid item lg={3} md={3}>
-          <Friends user={user} />
+          <Friends user={user} authUser={authUser} />
         </Grid>
       </Hidden>
     </Grid>

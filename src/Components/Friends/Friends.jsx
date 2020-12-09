@@ -44,7 +44,7 @@ function a11yProps(index) {
   };
 }
 
-function Friends({ user }) {
+function Friends({ user, authUser }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const friendsData = useSelector((state) => state.users.userFriends);
@@ -69,7 +69,9 @@ function Friends({ user }) {
         centered
       >
         <Tab icon={<SupervisorAccountIcon />} {...a11yProps(0)} />
-        <Tab icon={<GroupAddIcon />} {...a11yProps(1)} />
+        {authUser.authUserData.id === user.id ? (
+          <Tab icon={<GroupAddIcon />} {...a11yProps(1)} />
+        ) : null}
       </Tabs>
 
       <div className={classes.body}>

@@ -1,21 +1,21 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../Redux/Actions/auth';
-import { useState } from 'react';
-import { addForm, clearPostData } from '../../Redux/Actions/posts';
-import { Link } from 'react-router-dom';
-import { useStyles } from './styles';
-import Search from '../../Components/Search/Search';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import BrokenImageIcon from '@material-ui/icons/BrokenImage';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import AddIcon from '@material-ui/icons/Add';
-import { Avatar } from '@material-ui/core';
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../Redux/Actions/auth";
+import { useState } from "react";
+import { addForm, clearPostData } from "../../Redux/Actions/posts";
+import { Link } from "react-router-dom";
+import { useStyles } from "./styles";
+import Search from "../../Components/Search/Search";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import BrokenImageIcon from "@material-ui/icons/BrokenImage";
+import VpnKeyIcon from "@material-ui/icons/VpnKey";
+import MoreIcon from "@material-ui/icons/MoreVert";
+import AddIcon from "@material-ui/icons/Add";
+import { Avatar } from "@material-ui/core";
 
 function Header() {
   const classes = useStyles();
@@ -44,14 +44,14 @@ function Header() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMenuOpen}
       onClose={handleMenuClose}
       className={classes.iconMenu}
@@ -71,14 +71,14 @@ function Header() {
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = auth.token ? (
     <Menu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
       className={classes.mobileMenuBar}
@@ -91,7 +91,7 @@ function Header() {
         }}
       >
         <p>
-          <Link to='#'>Add post</Link>
+          <Link to="#">Add post</Link>
         </p>
       </MenuItem>
       <MenuItem onClick={handleMenuClose} className={classes.iconMenu}>
@@ -113,19 +113,19 @@ function Header() {
   ) : (
     <Menu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
       <MenuItem className={classes.iconMenu}>
-        <IconButton color='inherit'>
+        <IconButton color="inherit">
           <VpnKeyIcon />
         </IconButton>
         <p>
-          <Link to='/auth/login'>Login</Link>
+          <Link to="/auth/login">Login</Link>
         </p>
       </MenuItem>
     </Menu>
@@ -133,43 +133,43 @@ function Header() {
 
   return auth.token ? (
     <div className={classes.grow}>
-      <AppBar position='static'>
+      <AppBar position="static">
         <Toolbar className={classes.root}>
           <div className={classes.searchContainer}>
-            <Typography className='mr-4'>
-              <Link to='/'>
-                <BrokenImageIcon fontSize='large' />
+            <Typography className="mr-4">
+              <Link to="/">
+                <BrokenImageIcon fontSize="large" />
               </Link>
             </Typography>
           </div>
           <Search />
           <div className={classes.sectionDesktop}>
-            <IconButton color='inherit' onClick={() => dispatch(addForm(true))}>
-              <Link to='#'>
+            <IconButton color="inherit" onClick={() => dispatch(addForm(true))}>
+              <Link to="#">
                 <AddIcon />
               </Link>
             </IconButton>
             <IconButton
-              edge='end'
-              aria-label='account of current user'
+              edge="end"
+              aria-label="account of current user"
               aria-controls={menuId}
-              aria-haspopup='true'
+              aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color='inherit'
+              color="inherit"
             >
               <Avatar
-                alt='Remy Sharp'
-                src='https://images.unsplash.com/photo-1536706936563-c9e47fc563df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
+                alt={auth.authUserData.name}
+                src={auth.authUserData.avatar}
               />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
-              aria-label='show more'
+              aria-label="show more"
               aria-controls={mobileMenuId}
-              aria-haspopup='true'
+              aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color='inherit'
+              color="inherit"
             >
               <MoreIcon />
             </IconButton>
@@ -181,15 +181,15 @@ function Header() {
     </div>
   ) : (
     <div className={classes.grow}>
-      <AppBar position='static'>
+      <AppBar position="static">
         <Toolbar className={classes.root}>
-          <Typography fontSize='large'>
-            <Link to='/'>
-              <BrokenImageIcon fontSize='large' />
+          <Typography fontSize="large">
+            <Link to="/">
+              <BrokenImageIcon fontSize="large" />
             </Link>
           </Typography>
-          <IconButton color='inherit'>
-            <Link to='/auth/login'>
+          <IconButton color="inherit">
+            <Link to="/auth/login">
               <VpnKeyIcon />
             </Link>
           </IconButton>

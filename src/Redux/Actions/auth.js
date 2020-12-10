@@ -50,9 +50,9 @@ export const logout = (userRefreshToken) => async (dispatch) => {
   dispatch({ type: "LOGOUT" });
 };
 
-export const addFriend = (userId) => async (dispatch) => {
+export const addFriend = (userId, authUserId) => async (dispatch) => {
   try {
-    const res = await api.addFriendUser(userId);
+    const res = await api.addFriend(userId);
     console.log(res);
     dispatch({
       type: "ADD_FRIEND",
@@ -65,7 +65,7 @@ export const addFriend = (userId) => async (dispatch) => {
 
 export const unFriend = (userId) => async (dispatch) => {
   try {
-    const res = await api.unFriendUser(userId);
+    const res = await api.unFriend(userId);
     dispatch({
       type: "UN_FRIEND",
       authUserData: res.data,

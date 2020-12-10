@@ -1,9 +1,13 @@
 import { useStyles } from "./styles";
 import LibraryAddCheckIcon from "@material-ui/icons/LibraryAddCheck";
+import CancelPresentationIcon from "@material-ui/icons/CancelPresentation";
 import { Avatar, CardContent, IconButton } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { addFriend } from "../../../Redux/Actions/auth";
 
 function PendingFriends({ friendRequests }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   return friendRequests.map((request, index) => (
     <div className={classes.root} key={index}>
@@ -29,8 +33,14 @@ function PendingFriends({ friendRequests }) {
         </div>
 
         <div className={classes.postIcons} align="right">
-          <IconButton color="primary" onClick={() => {}}>
+          <IconButton
+            color="primary"
+            onClick={() => dispatch(addFriend(request.id))}
+          >
             <LibraryAddCheckIcon />
+          </IconButton>
+          <IconButton color="primary" onClick={() => {}}>
+            <CancelPresentationIcon />
           </IconButton>
         </div>
       </div>

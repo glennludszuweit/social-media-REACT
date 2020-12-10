@@ -1,7 +1,7 @@
 import moment from "moment";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, MemoryRouter, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { deletePost, editForm } from "../../Redux/Actions/posts.js";
 import { useStyles } from "./styles";
 import PostEdit from "./PostEdit/PostEdit";
@@ -23,7 +23,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import CloseIcon from "@material-ui/icons/Close";
-import { Pagination, PaginationItem } from "@material-ui/lab";
+import Paginate from "../Paginate/Paginate.jsx";
 
 function Posts() {
   const classes = useStyles();
@@ -180,31 +180,7 @@ function Posts() {
         </div>
       )}
 
-      <div align="center" className={classes.paginateContainer}>
-        <MemoryRouter initialEntries={["/inbox"]} initialIndex={0}>
-          <Route>
-            {({ location }) => {
-              const query = new URLSearchParams(location.search);
-              const page = parseInt(query.get("page") || "1", 10);
-              return (
-                <Pagination
-                  page={page}
-                  count={10}
-                  renderItem={(item) => (
-                    <PaginationItem
-                      component={Link}
-                      to={`/inbox${
-                        item.page === 1 ? "" : `?page=${item.page}`
-                      }`}
-                      {...item}
-                    />
-                  )}
-                />
-              );
-            }}
-          </Route>
-        </MemoryRouter>
-      </div>
+      <Paginate />
     </div>
   );
 }

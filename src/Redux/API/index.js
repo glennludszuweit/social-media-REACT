@@ -11,6 +11,12 @@ export const register = (userData) =>
 export const logout = (userRefreshToken) =>
   axios.post(`${URL}/auth/logout`, { refreshToken: userRefreshToken });
 
+export const addFriend = (userId) =>
+  axios.post(`${URL}/friends/approve/`, { id: userId });
+
+export const unFriend = (userId) =>
+  axios.post(`${URL}/friends/reject/`, userId);
+
 //USERS
 export const getUser = (userId) => axios.get(`${URL}/user/${userId}`);
 
@@ -25,12 +31,6 @@ export const updateUser = (updatedUserData) =>
 
 export const deleteUser = (userId, userToken) =>
   axios.delete(`${URL}/user/${userId}`, { token: userToken });
-
-export const addFriendUser = (userId) =>
-  axios.post(`${URL}/friends/approve/`, { id: userId });
-
-export const unFriendUser = (userId) =>
-  axios.post(`${URL}/friends/reject/`, userId);
 
 export const getFriendsUser = () => axios.get(`${URL}/friends`);
 

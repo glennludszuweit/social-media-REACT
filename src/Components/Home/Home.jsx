@@ -14,9 +14,7 @@ function Home() {
   const dispatch = useDispatch();
   const authUser = useSelector((state) => state.auth);
   const user = useSelector((state) => state.users.userData);
-  const authUserFriendsIds = authUser.authUserData.friends.map(
-    (friend) => friend.id
-  );
+  const authUserFriendsIds = authUser.authUserData.friends;
   const authUserFriendReqeustsIds = authUser.authUserData.friendRequests;
 
   useEffect(() => {

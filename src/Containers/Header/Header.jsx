@@ -137,9 +137,9 @@ function Header() {
         <Toolbar className={classes.root}>
           <div className={classes.searchContainer}>
             <Typography className="mr-4">
-              <Link to="/">
+              <a href="/">
                 <BrokenImageIcon fontSize="large" />
-              </Link>
+              </a>
             </Typography>
           </div>
           <Search />

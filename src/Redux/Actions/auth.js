@@ -49,3 +49,28 @@ export const logout = (userRefreshToken) => async (dispatch) => {
   await api.logout(userRefreshToken);
   dispatch({ type: "LOGOUT" });
 };
+
+export const addFriend = (userId) => async (dispatch) => {
+  try {
+    const res = await api.addFriendUser(userId);
+    console.log(res);
+    dispatch({
+      type: "ADD_FRIEND",
+      authUserData: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const unFriend = (userId) => async (dispatch) => {
+  try {
+    const res = await api.unFriendUser(userId);
+    dispatch({
+      type: "UN_FRIEND",
+      authUserData: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -42,6 +42,12 @@ const auth = (state = defaultState, action) => {
         authUserData: {},
       };
 
+    case "ADD_FRIEND":
+      return { ...state, authUserData: action.authUserData };
+
+    case "UN_FRIEND":
+      return { ...state, authUserData: action.authUserData };
+
     default:
       return state;
   }

@@ -60,28 +60,32 @@ function Friends({ user, authUser }) {
 
   return (
     <Paper elevation={0} className={classes.root}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        indicatorColor="primary"
-        textColor="primary"
-        variant="fullWidth"
-        centered
-      >
-        <Tab icon={<SupervisorAccountIcon />} {...a11yProps(0)} />
-        {authUser.authUserData.id === user.id ? (
-          <Tab icon={<GroupAddIcon />} {...a11yProps(1)} />
-        ) : null}
-      </Tabs>
-
-      <div className={classes.body}>
-        <TabPanel value={value} index={0}>
-          <ApprovedFriends friends={friendsData} />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <PendingFriends friendRequests={friendsData.friendRequests} />
-        </TabPanel>
-      </div>
+      {authUser.authUserData.id === user.id ? (
+        <div>
+          <Tabs
+            style={{ marginBottom: -20 }}
+            value={value}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="fullWidth"
+            centered
+          >
+            <Tab icon={<SupervisorAccountIcon />} {...a11yProps(0)} />
+            <Tab icon={<GroupAddIcon />} {...a11yProps(1)} />
+          </Tabs>
+          <div>
+            <TabPanel value={value} index={0}>
+              <ApprovedFriends friends={friendsData} />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <PendingFriends friendRequests={friendsData.friendRequests} />
+            </TabPanel>
+          </div>
+        </div>
+      ) : (
+        <ApprovedFriends friends={friendsData} />
+      )}
     </Paper>
   );
 }

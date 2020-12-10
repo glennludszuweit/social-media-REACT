@@ -26,12 +26,6 @@ const users = (state = defaultState, action) => {
       localStorage.removeItem("social-auth");
       return defaultState;
 
-    case "ADD_FRIEND_USER":
-      return { ...state, userData: action.userData };
-
-    case "UN_FRIEND_USER":
-      return { ...state, userData: action.userData };
-
     case "GET_USER_FRIENDS":
       return { ...state, userFriends: action.userFriends };
 

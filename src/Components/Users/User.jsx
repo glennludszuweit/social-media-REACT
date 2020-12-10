@@ -9,7 +9,6 @@ import Tab from "@material-ui/core/Tab";
 import PropTypes from "prop-types";
 import { Box, Typography } from "@material-ui/core";
 import UserPosts from "./UserPosts/UserPosts";
-import UserGroups from "./UserGroups/UserGroups";
 import UserInfo from "./UserInfo/UserInfo";
 import Friends from "../Friends/Friends";
 

@@ -10,7 +10,10 @@ import { Box, Typography } from "@material-ui/core";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserFriends } from "../../Redux/Actions/users";
+import {
+  getUserFriends,
+  getUserFriendRequests,
+} from "../../Redux/Actions/users";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -48,10 +51,14 @@ function Friends({ user, authUser }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const friendsData = useSelector((state) => state.users.userFriends);
+  const friendRequestsData = useSelector(
+    (state) => state.users.userFriendRequests
+  );
   const [value, setValue] = useState(0);
 
   useEffect(() => {
     dispatch(getUserFriends(user.friends));
+    dispatch(getUserFriendRequests(user.friendRequests));
   }, [dispatch]);
 
   const handleChange = (event, newValue) => {
@@ -79,7 +86,7 @@ function Friends({ user, authUser }) {
               <ApprovedFriends friends={friendsData} />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <PendingFriends friendRequests={friendsData.friendRequests} />
+              <PendingFriends friendRequests={friendRequestsData} />
             </TabPanel>
           </div>
         </div>

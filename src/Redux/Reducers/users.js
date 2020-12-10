@@ -4,6 +4,7 @@ const defaultState = {
   userData: [],
   userPosts: [],
   userFriends: [],
+  userFriendRequests: [],
   searchedUser: [],
 };
 
@@ -28,6 +29,9 @@ const users = (state = defaultState, action) => {
 
     case "GET_USER_FRIENDS":
       return { ...state, userFriends: action.userFriends };
+
+    case "GET_USER_FRIEND_REQUESTS":
+      return { ...state, userFriendRequests: action.userFriendRequests };
 
     default:
       return state;

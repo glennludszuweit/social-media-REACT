@@ -66,10 +66,23 @@ export const getUserFriends = (friendsId) => async (dispatch) => {
     const friends = await Promise.all(
       friendsId ? friendsId.map((id) => api.getUser(id)) : []
     );
-
     dispatch({
       type: "GET_USER_FRIENDS",
       userFriends: friends.map((friend) => friend.data),
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getUserFriendRequests = (friendRequestsId) => async (dispatch) => {
+  try {
+    const friendRequests = await Promise.all(
+      friendRequestsId ? friendRequestsId.map((id) => api.getUser(id)) : []
+    );
+    dispatch({
+      type: "GET_USER_FRIEND_REQUESTS",
+      userFriendRequests: friendRequests.map((request) => request.data),
     });
   } catch (error) {
     console.log(error);

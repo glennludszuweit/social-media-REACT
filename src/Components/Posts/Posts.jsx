@@ -24,6 +24,7 @@ import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import CloseIcon from "@material-ui/icons/Close";
 import Paginate from "../Paginate/Paginate.jsx";
+import { Pagination } from "@material-ui/lab";
 
 function Posts() {
   const classes = useStyles();
@@ -40,6 +41,14 @@ function Posts() {
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = posts.slice(firstPostIndex, lastPostIndex);
+  const pageNumbers = [];
+  for (
+    let index = 1;
+    index <= Math.ceil(posts.length / postsPerPage);
+    index++
+  ) {
+    pageNumbers.push(index);
+  }
 
   const handleChange = (event, newValue) => {
     setView(newValue);
@@ -187,12 +196,14 @@ function Posts() {
         </div>
       )}
 
-      <Paginate
-        postsPerPage={postsPerPage}
-        totalPosts={posts.length}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      />
+      <div align="center" className={classes.paginateContainer}>
+        <Pagination
+          color="primary"
+          page={currentPage}
+          count={pageNumbers.length}
+          onChange={(event, value) => setCurrentPage(value)}
+        />
+      </div>
     </div>
   );
 }

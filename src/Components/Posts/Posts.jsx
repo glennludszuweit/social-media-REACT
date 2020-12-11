@@ -1,5 +1,5 @@
 import moment from "moment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { deletePost, editForm } from "../../Redux/Actions/posts.js";
@@ -30,9 +30,16 @@ function Posts() {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts.postData);
   const authUser = useSelector((state) => state.auth.authUserData);
+
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(-1);
   const [view, setView] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(7);
+
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentPosts = posts.slice(firstPostIndex, lastPostIndex);
 
   const handleChange = (event, newValue) => {
     setView(newValue);
@@ -58,7 +65,7 @@ function Posts() {
       </Tabs>
 
       {posts ? (
-        posts.map((post, index) => (
+        currentPosts.map((post, index) => (
           <div className={classes.root} key={index}>
             <div className={classes.card}>
               <div className={classes.cardDetails}>
@@ -180,7 +187,12 @@ function Posts() {
         </div>
       )}
 
-      <Paginate />
+      <Paginate
+        postsPerPage={postsPerPage}
+        totalPosts={posts.length}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </div>
   );
 }

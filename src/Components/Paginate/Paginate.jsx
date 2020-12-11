@@ -1,33 +1,21 @@
-import { Pagination, PaginationItem } from "@material-ui/lab";
-import { Link, MemoryRouter, Route } from "react-router-dom";
+import { Pagination } from "@material-ui/lab";
 import { useStyles } from "./styles";
 
-function Paginate() {
+function Paginate({ postsPerPage, totalPosts, setCurrentPage, currentPage }) {
   const classes = useStyles();
+  const pageNumbers = [];
+  for (let index = 1; index <= Math.ceil(totalPosts / postsPerPage); index++) {
+    pageNumbers.push(index);
+  }
 
   return (
     <div align="center" className={classes.paginateContainer}>
-      <MemoryRouter initialEntries={["/inbox"]} initialIndex={0}>
-        <Route>
-          {({ location }) => {
-            const query = new URLSearchParams(location.search);
-            const page = parseInt(query.get("page") || "1", 10);
-            return (
-              <Pagination
-                page={page}
-                count={10}
-                renderItem={(item) => (
-                  <PaginationItem
-                    component={Link}
-                    to={`/inbox${item.page === 1 ? "" : `?page=${item.page}`}`}
-                    {...item}
-                  />
-                )}
-              />
-            );
-          }}
-        </Route>
-      </MemoryRouter>
+      <Pagination
+        color="primary"
+        page={currentPage}
+        count={pageNumbers.length}
+        onChange={(event, value) => setCurrentPage(value)}
+      />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import LibraryAddCheckIcon from "@material-ui/icons/LibraryAddCheck";
 import CancelPresentationIcon from "@material-ui/icons/CancelPresentation";
 import { Avatar, CardContent, IconButton } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { addFriend } from "../../../Redux/Actions/auth";
+import { addFriend, unFriend } from "../../../Redux/Actions/auth";
 
 function PendingFriends({ friendRequests }) {
   const classes = useStyles();
@@ -39,7 +39,7 @@ function PendingFriends({ friendRequests }) {
           >
             <LibraryAddCheckIcon />
           </IconButton>
-          <IconButton color="primary" onClick={() => {}}>
+          <IconButton color="primary" onClick={() => dispatch(unFriend(request.id))}>
             <CancelPresentationIcon />
           </IconButton>
         </div>

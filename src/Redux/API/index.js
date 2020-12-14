@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const URL = 'https://sz.hktr.de/api';
-// const URL = 'http://danyloveselyi.me:3000/api';
 
 //AUTH
 export const login = (userData) => axios.post(`${URL}/auth/login`, userData);

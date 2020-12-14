@@ -12,18 +12,6 @@ export const getUser = (userId) => async (dispatch) => {
   }
 };
 
-export const getUserPosts = (userId) => async (dispatch) => {
-  try {
-    const res = await api.getUserPosts(userId);
-    dispatch({
-      type: 'GET_USER_POSTS',
-      userPosts: res.data,
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const searchUser = (match, type, field) => async (dispatch) => {
   try {
     const res = await api.searchUser(match, type, field);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getUser, getUserPosts } from "../../Redux/Actions/users";
+import { getUser } from "../../Redux/Actions/users";
 import { useStyles } from "./styles";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
@@ -11,6 +11,7 @@ import { Box, Typography } from "@material-ui/core";
 import UserPosts from "./UserPosts/UserPosts";
 import UserInfo from "./UserInfo/UserInfo";
 import Friends from "../Friends/Friends";
+import { getPosts } from "../../Redux/Actions/posts";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -49,7 +50,7 @@ function UserView() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const user = useSelector((state) => state.users.userData);
-  const userPosts = useSelector((state) => state.users.userPosts);
+  const posts = useSelector((state) => state.posts.postData);
   const authUser = useSelector((state) => state.auth);
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
@@ -58,7 +59,7 @@ function UserView() {
 
   useEffect(() => {
     dispatch(getUser(id));
-    dispatch(getUserPosts(id));
+    dispatch(getPosts());
   }, [dispatch, id]);
 
   return (
@@ -80,7 +81,7 @@ function UserView() {
           <UserInfo user={user} authUser={authUser} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <UserPosts posts={userPosts} authUser={authUser} user={user} />
+          <UserPosts posts={posts} authUser={authUser} user={user} />
         </TabPanel>
         <TabPanel value={value} index={2}>
           <Friends user={user} authUser={authUser} />

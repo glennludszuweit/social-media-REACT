@@ -90,7 +90,7 @@ function Comments({ post }) {
                     fontSize='small'
                     color='primary'
                     onClick={() => {
-                      dispatch(addComment(post.id, comment, post.author.id));
+                      dispatch(addComment(post.id, comment));
                       setComment({
                         message: '',
                       });

@@ -1,5 +1,5 @@
 import moment from "moment";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { deletePost, editForm } from "../../Redux/Actions/posts.js";
@@ -23,7 +23,6 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import CloseIcon from "@material-ui/icons/Close";
-import Paginate from "../Paginate/Paginate.jsx";
 import { Pagination } from "@material-ui/lab";
 
 function Posts() {
@@ -77,6 +76,12 @@ function Posts() {
         currentPosts.map((post, index) => (
           <div className={classes.root} key={index}>
             <div className={classes.card}>
+              <div className={classes.cardMediaContainer}>
+                { post.author.avatar ?
+                  <img className={classes.cardMedia} src={post.author.avatar} alt={post.author.name}/>
+                  : <img className={classes.cardMedia} src="https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1445&q=80" alt={post.author.name}/>
+                }
+              </div>
               <div className={classes.cardDetails}>
                 <CardContent>
                   <Link to={`/users/${post.author.id}`}>

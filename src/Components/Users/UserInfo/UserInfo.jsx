@@ -4,13 +4,13 @@ import ChatIcon from "@material-ui/icons/Chat";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import { Button, Grid } from "@material-ui/core";
 import UserUpdate from "../UserUpdate/UserUpdate";
-import { addFriend } from "../../../Redux/Actions/auth";
+import { addFriend, unFriend } from "../../../Redux/Actions/auth";
 
 function UserInfo({ user, authUser }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const userFriendsId = authUser.authUserData.friends.map((x) => x.id);
+  const userFriendsId = authUser.authUserData.friends;
   const userFriendRequestsSent = authUser.authUserData.friendRequestsSent;
 
   return user.id === authUser.authUserData.id ? (
@@ -45,7 +45,7 @@ function UserInfo({ user, authUser }) {
             color="primary"
             className={classes.button}
             startIcon={<PersonAddIcon />}
-            onClick={() => dispatch(addFriend(user.id))}
+            onClick={() => dispatch(unFriend(user.id))}
           >
             Unfriend
           </Button>

@@ -1,19 +1,19 @@
-import * as api from "../API";
+import * as api from '../API';
 
 export const login = (userData) => async (dispatch) => {
   try {
     const res = await api.login(userData);
     dispatch({
-      type: "LOGIN",
+      type: 'LOGIN',
       status: true,
-      message: "Success",
+      message: 'Success',
       authUserData: res.data.user,
       token: res.data.tokens.access.token,
       refreshToken: res.data.tokens.refresh.token,
     });
   } catch (error) {
     dispatch({
-      type: "LOGIN",
+      type: 'LOGIN',
       status: false,
       authUserData: false,
       token: false,
@@ -27,7 +27,7 @@ export const register = (userData) => async (dispatch) => {
   try {
     const res = await api.register(userData);
     dispatch({
-      type: "REGISTER",
+      type: 'REGISTER',
       status: true,
       authUserData: res.data.user,
       token: res.data.tokens.access.token,
@@ -35,7 +35,7 @@ export const register = (userData) => async (dispatch) => {
     });
   } catch (error) {
     dispatch({
-      type: "REGISTER",
+      type: 'REGISTER',
       status: false,
       authUserData: false,
       token: false,
@@ -47,15 +47,14 @@ export const register = (userData) => async (dispatch) => {
 
 export const logout = (userRefreshToken) => async (dispatch) => {
   await api.logout(userRefreshToken);
-  dispatch({ type: "LOGOUT" });
+  dispatch({ type: 'LOGOUT' });
 };
 
-export const addFriend = (userId, authUserId) => async (dispatch) => {
+export const addFriend = (userId) => async (dispatch) => {
   try {
     const res = await api.addFriend(userId);
-    console.log(res);
     dispatch({
-      type: "ADD_FRIEND",
+      type: 'ADD_FRIEND',
       authUserData: res.data,
     });
   } catch (error) {
@@ -66,8 +65,9 @@ export const addFriend = (userId, authUserId) => async (dispatch) => {
 export const unFriend = (userId) => async (dispatch) => {
   try {
     const res = await api.unFriend(userId);
+    console.log(res.data);
     dispatch({
-      type: "UN_FRIEND",
+      type: 'UN_FRIEND',
       authUserData: res.data,
     });
   } catch (error) {

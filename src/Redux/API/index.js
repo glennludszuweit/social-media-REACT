@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
-// const URL = "https://sz.hktr.de/api";
-const URL = "http://danyloveselyi.me:3000/api";
+const URL = 'https://sz.hktr.de/api';
+// const URL = 'http://danyloveselyi.me:3000/api';
 
 //AUTH
 export const login = (userData) => axios.post(`${URL}/auth/login`, userData);
@@ -16,7 +16,7 @@ export const addFriend = (userId) =>
   axios.post(`${URL}/friends/approve/`, { id: userId });
 
 export const unFriend = (userId) =>
-  axios.post(`${URL}/friends/reject/`, userId);
+  axios.post(`${URL}/friends/reject/`, { id: userId });
 
 //USERS
 export const getUser = (userId) => axios.get(`${URL}/user/${userId}`);
@@ -39,6 +39,8 @@ export const pendingFriendsUser = () => axios.get(`${URL}/friends/pending`);
 
 //POSTS
 export const getPosts = () => axios.get(`${URL}/post`);
+
+export const getPost = (postId) => axios.get(`${URL}/post/${postId}`);
 
 export const addPost = (postData) => axios.post(`${URL}/post`, postData);
 

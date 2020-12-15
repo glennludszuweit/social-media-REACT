@@ -49,6 +49,43 @@ export const deleteUser = (userId, userToken) => async (dispatch) => {
   }
 };
 
+export const getUserPosts = (userId) => async (dispatch) => {
+  try {
+    const res = await api.getUserPosts(userId);
+    const authorIds = res.data.map((x) => x.author);
+    const commentIds = res.data.map((x) => x.comments);
+    const author = await Promise.all(
+      authorIds.map(async (x) => await api.getUser(x))
+    );
+    const comments = commentIds.filter((commentId) => commentId.length);
+    const postData = await Promise.all(
+      res.data.map(async (post) => {
+        const postAuthor = author.find(
+          (authorId) => authorId.data.id === post.author
+        );
+        const postComments = await Promise.all(
+          comments.flat().map(async (commentId) => {
+            const comment = await api.getPost(commentId);
+            comment.data.author = (await api.getUser(comment.data.author)).data;
+            return comment.data;
+          })
+        );
+        return {
+          ...post,
+          author: postAuthor.data,
+          comments: postComments.filter((x) => x.parent === post.id),
+        };
+      })
+    );
+    dispatch({
+      type: 'GET_USER_POSTS',
+      userPosts: postData,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getUserFriends = (friendsId) => async (dispatch) => {
   try {
     const friends = await Promise.all(

@@ -1,36 +1,40 @@
-import Axios from "axios";
+import Axios from 'axios';
 
 const defaultState = {
   userData: [],
   userPosts: [],
   userFriends: [],
+  userPosts: [],
   userFriendRequests: [],
   searchedUser: [],
 };
 
 const users = (state = defaultState, action) => {
   switch (action.type) {
-    case "GET_USER":
+    case 'GET_USER':
       return { ...state, userData: action.userData };
 
-    case "GET_USER_POSTS":
+    case 'GET_USER_POSTS':
       return { ...state, userPosts: action.userPosts };
 
-    case "SEARCH_USER":
+    case 'SEARCH_USER':
       return { ...state, searchedUser: action.searchedUser };
 
-    case "UPDATE_USER":
+    case 'UPDATE_USER':
       return { ...state, userData: action.userData };
 
-    case "DELETE_USER":
-      delete Axios.defaults.headers.common["Authorization"];
-      localStorage.removeItem("social-auth");
+    case 'DELETE_USER':
+      delete Axios.defaults.headers.common['Authorization'];
+      localStorage.removeItem('social-auth');
       return defaultState;
 
-    case "GET_USER_FRIENDS":
+    case 'GET_USER_POSTS':
+      return { ...state, userPosts: action.userPosts };
+
+    case 'GET_USER_FRIENDS':
       return { ...state, userFriends: action.userFriends };
 
-    case "GET_USER_FRIEND_REQUESTS":
+    case 'GET_USER_FRIEND_REQUESTS':
       return { ...state, userFriendRequests: action.userFriendRequests };
 
     default:

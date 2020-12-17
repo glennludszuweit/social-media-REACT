@@ -1,18 +1,24 @@
-import Axios from 'axios';
+import Axios from '../API/Axios';
 
 const localStorageState = JSON.parse(localStorage.getItem('social-auth'));
 let defaultState = { token: false, refreshToken: false, authUserData: {} };
 if (localStorageState) {
   defaultState = localStorageState;
   if (defaultState.token) {
-    Axios.defaults.headers.common['Authorization'] = defaultState.token;
+    Axios.tokens = {
+      access: { token: defaultState.token },
+      refresh: { token: defaultState.refreshToken },
+    };
   }
 }
 
 const auth = (state = defaultState, action) => {
   switch (action.type) {
     case 'LOGIN':
-      Axios.defaults.headers.common['Authorization'] = action.token;
+      Axios.tokens = {
+        access: { token: action.token },
+        refresh: { token: action.refreshToken },
+      };
       return {
         request: 'login',
         status: action.status,
@@ -22,7 +28,10 @@ const auth = (state = defaultState, action) => {
       };
 
     case 'REGISTER':
-      Axios.defaults.headers.common['Authorization'] = action.token;
+      Axios.tokens = {
+        access: { token: action.token },
+        refresh: { token: action.refreshToken },
+      };
       return {
         request: 'register',
         status: action.status,
@@ -32,7 +41,7 @@ const auth = (state = defaultState, action) => {
       };
 
     case 'LOGOUT':
-      delete Axios.defaults.headers.common['Authorization'];
+      Axios.tokens = false;
       localStorage.removeItem('social-auth');
       return {
         request: 'logout',

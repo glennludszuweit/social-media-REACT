@@ -1,14 +1,14 @@
-import Posts from "../Posts/Posts";
-import Friends from "../Friends/Friends";
-import { Grid, Hidden } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getPosts } from "../../Redux/Actions/posts";
+import Posts from '../Posts/Posts';
+import Friends from '../Friends/Friends';
+import { Grid, Hidden } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getPosts } from '../../Redux/Actions/posts';
 import {
   getUser,
   getUserFriendRequests,
   getUserFriends,
-} from "../../Redux/Actions/users";
+} from '../../Redux/Actions/users';
 
 function Home() {
   const dispatch = useDispatch();

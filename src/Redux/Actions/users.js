@@ -70,10 +70,20 @@ export const getUserPosts = (userId) => async (dispatch) => {
             return comment.data;
           })
         );
+        console.log(
+          postComments
+            .map((x) => x.parent)
+            .filter((z) => z !== null)
+            .filter((y) => y === post.id)
+        );
         return {
           ...post,
           author: postAuthor.data,
-          comments: postComments.filter((x) => x.parent === post.id),
+          comments: postComments.filter(
+            (z) =>
+              (z.parent !== null || z.parent !== undefined) &&
+              z.parent === post.id
+          ),
         };
       })
     );

@@ -4,7 +4,6 @@ const defaultState = {
   userData: [],
   userPosts: [],
   userFriends: [],
-  userPosts: [],
   userFriendRequests: [],
   searchedUser: [],
 };
@@ -27,9 +26,6 @@ const users = (state = defaultState, action) => {
       delete Axios.defaults.headers.common['Authorization'];
       localStorage.removeItem('social-auth');
       return defaultState;
-
-    case 'GET_USER_POSTS':
-      return { ...state, userPosts: action.userPosts };
 
     case 'GET_USER_FRIENDS':
       return { ...state, userFriends: action.userFriends };

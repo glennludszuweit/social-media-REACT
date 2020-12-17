@@ -1,4 +1,5 @@
 import * as api from '../API';
+import { getUserPosts } from './users';
 
 export const addForm = (status) => (dispatch) => {
   dispatch({
@@ -38,7 +39,11 @@ export const getPosts = () => async (dispatch) => {
         return {
           ...post,
           author: postAuthor.data,
-          comments: postComments.filter((x) => x.parent === post.id),
+          comments: postComments.filter(
+            (z) =>
+              (z.parent !== null || z.parent !== undefined) &&
+              z.parent === post.id
+          ),
         };
       })
     );
@@ -60,6 +65,7 @@ export const addPost = (postData, userId) => async (dispatch) => {
       postData: res.data,
     });
     await getPosts()(dispatch);
+    await getUserPosts(userId)(dispatch);
   } catch (error) {
     console.log(error);
   }
@@ -73,6 +79,7 @@ export const editPost = (postId, postData, userId) => async (dispatch) => {
       postData: res.data,
     });
     await getPosts()(dispatch);
+    await getUserPosts(userId)(dispatch);
   } catch (error) {
     console.log(error);
   }
@@ -85,6 +92,7 @@ export const deletePost = (postId, userId) => async (dispatch) => {
       type: 'DELETE_POST',
     });
     await getPosts()(dispatch);
+    await getUserPosts(userId)(dispatch);
   } catch (error) {
     console.log(error);
   }
